@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>关于 | AegeanYan的小站</title>
+<title>B树和B+树 | AegeanYan的小站</title>
 <meta name="description" content="欢迎来到酒馆">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -80,24 +80,43 @@
       <div class="content-container">
         <div class="post-detail">
           
-          <h2 class="post-title">关于</h2>
+          <h2 class="post-title">B树和B+树</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-01-25</span>
+            <span><i class="icon-calendar-outline"></i> 2021-05-09</span>
             
           </div>
           <div class="post-content">
-            <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+            <p><a href="https://www.cnblogs.com/nullzx/p/8729425.html" title="cnblogs">B树</a><br>
+<a href="https://www.cnblogs.com/nullzx/p/8729425.html" title="cnblogs">B树</a></p>
+<blockquote>
+<p>一般来说，对于确定的m和确定类型的记录，结点大小是固定的，无论它实际存储了多少个记录。但是分配固定结点大小的方法会存在浪费的情况，比如key为28,29所在的结点，还有2个key的位置没有使用，但是已经不可能继续在插入任何值了，因为这个结点的前序key是27,后继key是30,所有整数值都用完了。所以如果记录先按key的大小排好序，再插入到B树中，结点的使用率就会很低，最差情况下使用率仅为50%。</p>
 </blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+<h1 id="b树">B+树</h1>
+<ul>
+<li>这里我们采取维基百科上所定义的方式，即关键字个数比孩子结点个数小1</li>
+</ul>
+<ol>
+<li>B+树包含2种类型的结点：内部结点（也称索引结点）和叶子结点。根结点本身即可以是内部结点，也可以是叶子结点。根结点的关键字个数最少可以只有1个。</li>
+<li>B+树与B树最大的不同是内部结点不保存数据，只用于索引，所有数据（或者说记录）都保存在叶子结点中。</li>
+<li>m阶B+树表示了内部结点最多有m-1个关键字（或者说内部结点最多有m个子树），阶数m同时限制了叶子结点最多存储m-1个记录。</li>
+<li>内部结点中的key都按照从小到大的顺序排列，对于内部结点中的一个key，左树中的所有key都<strong>小于</strong>它，右子树中的key都<strong>大于等于</strong>它。叶子结点中的记录也按照key的大小排列。</li>
+<li>每个叶子结点都存有相邻叶子结点的指针，叶子结点本身依关键字的大小自小而大顺序链接。</li>
+</ol>
+<p>通常用于数据库和操作系统的<code>文件系统</code>中。NTFS、ReiserFS、NSS、XFS、JFS、ReFS和BFS等文件系统都在使用<code>B+树</code>作为元数据索引。<code>B+树</code>的特点是能够保持数据稳定有序， 其插入与修改拥有较稳定的对数时间复杂度。<code>B+树</code>元素自底向上插入。<br>
+<a href="https://www.cnblogs.com/nullzx/p/8729425.html">B+树</a></p>
 
           </div>
         </div>
 
         
+          <div class="next-post">
+            <a class="purple-link" href="https://AegeanYan.github.io/post/re-li-xue-ji-ben-ding-lu/">
+              <h3 class="post-title">
+                下一篇：热力学基本定律
+              </h3>
+            </a>
+          </div>
+          
       </div>
 
       
