@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://AegeanYan.github.io</id>
     <title>AegeanYan的小站</title>
-    <updated>2021-05-09T09:25:43.534Z</updated>
+    <updated>2021-05-10T07:37:08.318Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://AegeanYan.github.io"/>
     <link rel="self" href="https://AegeanYan.github.io/atom.xml"/>
@@ -10,6 +10,683 @@
     <logo>https://AegeanYan.github.io/images/avatar.png</logo>
     <icon>https://AegeanYan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, AegeanYan的小站</rights>
+    <entry>
+        <title type="html"><![CDATA[树与集合]]></title>
+        <id>https://AegeanYan.github.io/post/shu-yu-ji-he/</id>
+        <link href="https://AegeanYan.github.io/post/shu-yu-ji-he/">
+        </link>
+        <updated>2021-05-10T07:36:50.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="静态查找表">静态查找表</h1>
+<h1 id="动态查找表">动态查找表</h1>
+<h2 id="二叉查找树">二叉查找树</h2>
+<blockquote>
+<p>find 利用定义递归</p>
+<p>insert 利用定义递归</p>
+<p>remove 替身</p>
+</blockquote>
+<h2 id="平衡树">平衡树</h2>
+<p>使得树尽可能丰满</p>
+<p>保证树的高度是O（logN）</p>
+<h3 id="avl树">AVL树</h3>
+<p><a href="https://www.cnblogs.com/CareySon/archive/2012/04/19/ImpleBinaryTreeWithCSharp.html" title="cnblogs">二叉查找树</a></p>
+<p><a href="https://www.cnblogs.com/vamei/archive/2013/03/21/2964092.html" title="cnblogs">AVL树</a></p>
+<p><a href="https://blog.csdn.net/qq_29590355/article/details/89324655" title="CSDN">AVL树</a></p>
+<blockquote>
+<p>保留了高度height ， 使得左右子树的height差值不超过1</p>
+<p>find可以用while非递归实现</p>
+</blockquote>
+<h3 id="红黑树">红黑树</h3>
+<blockquote>
+<p><strong>（1）每个节点或者是黑色，或者是红色。</strong><br>
+<strong>（2）根节点是黑色。</strong><br>
+<strong>（3）每个叶子节点（NIL）是黑色。 [注意：这里叶子节点，是指为空(NIL或NULL)的叶子节点！]</strong><br>
+<strong>（4）如果一个节点是红色的，则它的子节点必须是黑色的。</strong><br>
+<strong>（5）从一个节点到该节点的子孙节点的所有路径上包含相同数目的黑节点。</strong></p>
+</blockquote>
+<p><a href="https://www.cnblogs.com/skywang12345/p/3245399.html" title="cnblogs">红黑树</a><br>
+<a href="https://blog.csdn.net/v_JULY_v/article/details/6105630">红黑树</a></p>
+<p><a href="https://www.cnblogs.com/fornever/archive/2011/12/02/2270692.html" title="cnblogs">红黑树</a></p>
+<p>插入操作</p>
+<ol>
+<li>
+<p>该树为空树，直接插入根结点的位置，违反性质1，把节点颜色有红改为黑即可。</p>
+</li>
+<li>
+<p>插入节点N的父节点P为黑色，不违反任何性质，无需做任何修改。</p>
+</li>
+<li>
+<p>N为红，P为红，（祖节点一定存在，且为黑，下边同理）U也为红，这里不论P是G的左孩子，还是右孩子；不论N是P的左孩子，还是右孩子。</p>
+<p>操作：如图把P、U改为黑色，G改为红色，未结束。</p>
+</li>
+<li>
+<p>N为红，P为红，U为黑，P为G的左孩子，N为P的左孩子（或者P为G的右孩子，N为P的左孩子；反正就是同向的）。</p>
+<p>操作：如图P、G变色，P、G变换即左左单旋（或者右右单旋），结束。</p>
+</li>
+<li>
+<p>N为红，P为红，U为黑，P为G的左孩子，N为P的右孩子（或者P为G的右孩子，N为P的左孩子；反正两方向相反）。</p>
+<p>操作：需要进行两次变换（旋转），图中只显示了一次变换-----首先P、N变换，颜色不变；然后就变成了情形4的情况，按照情况4操作，即结束。</p>
+<p>解析：由于P、N都为红，经变换，不违反性质5；然后就变成4的情形，此时G与G现在的左孩子变色，并变换，结束。</p>
+</li>
+</ol>
+<p>删除操作</p>
+<p>我们知道删除需先找到“替代点”来替代删除点而被删除，也就是删除的是替代点，而替代点N的至少有一个子节点为NULL，那么，若N为红色，则两个子节点一定都为NULL（必须地），那么直接把N删了，不违反任何性质，ok，结束了；若N为黑色，另一个节点M不为NULL，则另一个节点M一定是红色的，且M的子节点都为NULL（按性质来的，不明白，自己分析一下）那么把N删掉，M占到N的位置，并改为黑色，不违反任何性质，ok，结束了；若N为黑色，另一个节点也为NULL，则把N删掉，该位置置为NULL，显然这个黑节点被删除了，破坏了性质5，那么要以N节点为起始点检索看看属于那种情况，并作相应的操作，另还需说明N为黑点（也许是NULL，也许不是，都一样），P为父节点，S为兄弟节点（这个我真想给兄弟节点叫B（brother）多好啊，不过人家图就是S我也不能改，在重画图，太浪费时间了！S也行呵呵，就当是sister也行，哈哈）分为以下5种情况：</p>
+<ol>
+<li>
+<p>S为红色（那么父节点P一定是黑，子节点一定是黑），N是P的左孩子（或者N是P的右孩子）。<br>
+操作：P、S变色，并交换----相当于AVL中的右右中旋转即以P为中心S向左旋（或者是AVL中的左左中的旋转），未结束。</p>
+</li>
+<li>
+<p>P、S及S的孩子们都为黑。</p>
+<p>操作：S改为红色，未结束。</p>
+</li>
+<li>
+<p>P为红（S一定为黑），S的孩子们都为黑。</p>
+<p>操作：P该为黑，S改为红，结束。</p>
+</li>
+<li>
+<p>P任意色，S为黑，N是P的左孩子，S的右孩子SR为红，S的左孩子任意（或者是N是P的右孩子，S的左孩子为红，S的右孩子任意）。</p>
+<p>操作：SR（SL）改为黑，P改为黑，S改为P的颜色，P、S变换--这里相对应于AVL中的右右中的旋转（或者是AVL中的左左旋转），结束。</p>
+</li>
+<li>
+<p>P任意色，S为黑，N是P的左孩子，S的左孩子SL为红，S的右孩子SR为黑（或者N是P的有孩子，S的右孩子为红，S的左孩子为黑）。</p>
+<p>操作：SL（或SR）改为黑，S改为红，SL（SR）、S变换；此时就回到了情形4，SL（SR）变成了黑S，S变成了红SR（SL），做情形4的操作即可，这两次变换，其实就是对应AVL的右左的两次旋转（或者是AVL的左右的两次旋转）。结束。</p>
+</li>
+</ol>
+<pre><code> 1 #include &lt;stdio.h&gt;
+  2 #include &lt;stdlib.h&gt;
+  3 
+  4 #define RED 0
+  5 #define BACK 1
+  6 
+  7 typedef int Elemtype;
+  8 
+  9 //定义一个红黑树的结点
+ 10 typedef struct Red_Back_Tree
+ 11 {
+ 12     Elemtype e;
+ 13     int color;
+ 14     struct Red_Back_Tree * child[2];
+ 15 }* RBT;
+ 16 
+ 17 //    两个节点变换函数
+ 18 void conversion(RBT *T,int direction);
+ 19 
+ 20 //    删除一个节点的所用函数
+ 21 int DeleteRBT(RBT *T,Elemtype e);                                //    删除主(接口)函数
+ 22 int find_replace_point(RBT gogal,RBT *l);                        //    寻找替代点
+ 23 int keep_balance_for_delete(RBT *T,int direction);                //    删除的平衡操作
+ 24 int do_with_start_point(RBT gogal,RBT *T,int direction);                    //    处理第一个起始点
+ 25 
+ 26 //    插入一个节点的所用函数
+ 27 int InsertRBT(RBT *T,Elemtype e);                                //    插入接口函数
+ 28 int _InsertRBT(RBT *T,Elemtype e);                                //    插入主函数
+ 29 int keep_balance_for_insert(RBT *T,int firdirection,Elemtype e);//    插入的平衡操作
+ 30 RBT create_one_node(Elemtype e);                                //    新建一个节点
+ 31 
+ 32 
+ 33 
+ 34 void conversion(RBT *T,int direction)
+ 35 {
+ 36     RBT f=(*T),s=f-&gt;child[direction],ss=s-&gt;child[!direction];
+ 37 
+ 38     f-&gt;child[direction]=ss;
+ 39     s-&gt;child[!direction]=f;
+ 40     *T=s;
+ 41 }
+ 42 
+ 43 //★★★★★★★★★★★★★★★★★删除操作★★★★★★★★★★★★★★★★★★★★★★★★★★★
+ 44 
+ 45 int do_with_start_point(RBT gogal,RBT *T,int direction)
+ 46 {
+ 47     gogal-&gt;e=(*T)-&gt;e;
+ 48     if(BACK==((*T)-&gt;color))
+ 49     {
+ 50         if(NULL!=(*T)-&gt;child[direction])
+ 51         {
+ 52             (*T)-&gt;e=(*T)-&gt;child[direction]-&gt;e;
+ 53             free((*T)-&gt;child[direction]);
+ 54             (*T)-&gt;child[direction]=NULL;
+ 55             return 1;
+ 56         }
+ 57         else
+ 58         {
+ 59             free((*T));
+ 60             *T=NULL;
+ 61             return 0;
+ 62         }
+ 63     }
+ 64     else
+ 65     {
+ 66         free((*T));
+ 67         (*T)=NULL;
+ 68         return 1;
+ 69     }
+ 70 }
+ 71 
+ 72 int keep_balance_for_delete(RBT *T,int direction)
+ 73 {
+ 74     RBT p=(*T),b=p-&gt;child[!direction];
+ 75     
+ 76     if(RED==b-&gt;color)
+ 77     {
+ 78         p-&gt;color=RED;
+ 79         b-&gt;color=BACK;
+ 80 //        conversion(&amp;p,!direction);//很恐怖的一个写法，偶然中发现：这里传的地址是假的!不是T!!
+ 81 //                                    考我怎么这么傻逼!!如果不是及时发现，到调试时将是无限恐怖
+ 82 //                                    将是一个巨大的隐藏的BUG!!!将会带来巨大的麻烦!!!
+ 83         conversion(T,!direction);
+ 84         return keep_balance_for_delete(&amp;((*T)-&gt;child[direction]),direction);
+ 85     }
+ 86     else if(BACK==p-&gt;color &amp;&amp; BACK==b-&gt;color &amp;&amp; 
+ 87         (NULL==b-&gt;child[0] || BACK==b-&gt;child[0]-&gt;color) &amp;&amp; 
+ 88         (NULL==b-&gt;child[1] || BACK==b-&gt;child[1]-&gt;color))    //这里感觉不美，就一次为NULL却每次要
+ 89     {                                                        //判断是否为NULL，不美……
+ 90         b-&gt;color=RED;
+ 91         return    0; 
+ 92     }
+ 93     else if(RED==p-&gt;color &amp;&amp; 
+ 94         (NULL==b-&gt;child[0] || BACK==b-&gt;child[0]-&gt;color) &amp;&amp;
+ 95         (NULL==b-&gt;child[1] || BACK==b-&gt;child[1]-&gt;color))
+ 96     {
+ 97         p-&gt;color=BACK;
+ 98         b-&gt;color=RED;
+ 99         return 1;
+100     }
+101 //    第一次调试
+102 //    调试原因：由于删除0点未按预料的操作应该是情况④，却按⑤操作
+103 //    错误的地方：RED==b-&gt;child[!direction] ! 丢了-&gt;color 这个错误我上边错了几次，不过编译器报错改了过来
+104 //    这次的编译器不报错，看代码也看不错来，最后追究到这里，一一对照才发现!!!
+105 //    else if(BACK==b-&gt;color &amp;&amp; (NULL!=b-&gt;child[!direction] &amp;&amp; RED==b-&gt;child[!direction]))
+106     else if(BACK==b-&gt;color &amp;&amp; (NULL!=b-&gt;child[!direction] &amp;&amp; RED==b-&gt;child[!direction]-&gt;color))
+107     {
+108         b-&gt;color=p-&gt;color;
+109         p-&gt;color=BACK;
+110         b-&gt;child[!direction]-&gt;color=BACK;
+111         conversion(T,!direction);
+112         return 1;
+113     }
+114     else
+115     {
+116         b-&gt;child[direction]-&gt;color=p-&gt;color;
+117         p-&gt;color=BACK;
+118         conversion(&amp;(p-&gt;child[!direction]),direction);//这里的p写的才算不错!即p也(*T)都行，一样!
+119         conversion(T,!direction);
+120         return 1;
+121     }
+122 
+123 }
+124 
+125 int find_replace_point(RBT gogal,RBT *l)
+126 {
+127     if(NULL!=(*l)-&gt;child[0])
+128     {
+129         if(find_replace_point(gogal,&amp;(*l)-&gt;child[0]))    return 1;
+130         return keep_balance_for_delete(l,0);
+131         //...
+132     }
+133 //    第二次调试---其实没F5,F10,F11，根据结果猜测，到这里看看还真是的!
+134 //    调试原因：删除0好了，删除1又错了---2不见了，1还在
+135 //    错误的地方：就在这里，找到替代点，却没有“替代”，这等于把替代点删了...
+136 //                这里很明显，gogal这个删除点指针根本就没用...我当时忘了吧!!修改如下!
+137 //    else    //替代点为起始点
+138 //    {
+139 //        return do_with_start_point(l,1);
+140 //    }
+141     else
+142     {
+143         return do_with_start_point(gogal,l,1);
+144     }
+145 }
+146 
+147 int DeleteRBT(RBT *T,Elemtype e)
+148 {
+149     if(!(*T))    return -1;
+150     else if(e&gt;(*T)-&gt;e)
+151     {
+152         if(DeleteRBT(&amp;((*T)-&gt;child[1]),e))    return 1;
+153         return keep_balance_for_delete(T,1);
+154         //...
+155     }
+156     else if(e&lt;(*T)-&gt;e)
+157     {
+158         if(DeleteRBT(&amp;((*T)-&gt;child[0]),e))    return 1;
+159         return keep_balance_for_delete(T,0);
+160         //...
+161     }
+162     else
+163     {
+164         if(NULL!=(*T)-&gt;child[1])    //真正的删除点不是起始点，需找替代点
+165         {
+166             if(find_replace_point((*T),&amp;((*T)-&gt;child[1])))    return 1;
+167             return keep_balance_for_delete(T,1);
+168             //...
+169         }
+170         else    //真正的删除点就是起始点
+171         {
+172             return do_with_start_point((*T),T,0);
+173         }
+174     }
+175 }
+176 //★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+177 
+178 
+179 //★★★★★★★★★★★★★★★★★★★插入操作★★★★★★★★★★★★★★★★★★★★★★★★★
+180 
+181 RBT create_one_node(Elemtype e)
+182 {
+183     RBT p=(RBT)malloc(sizeof(struct Red_Back_Tree));
+184     p-&gt;e=e;    p-&gt;color=RED;
+185     p-&gt;child[0]=p-&gt;child[1]=NULL;
+186     return p;
+187 }
+188 
+189 int keep_balance_for_insert(RBT *T,int firdirection,Elemtype e)
+190 {
+191     RBT p=(*T)-&gt;child[firdirection],u=(*T)-&gt;child[!firdirection];
+192     int secdirection=( (e&gt;p-&gt;e) ? 1 : 0 );    //    查处第二个方向
+193     
+194     if(NULL!=u &amp;&amp; RED==u-&gt;color)    /*****③叔节点为红色*****/    
+195     {
+196         p-&gt;color=BACK;
+197         u-&gt;color=BACK;
+198         (*T)-&gt;color=RED;
+199         return 1;    //继续...
+200     }
+201     else                            /*****④叔节点为黑色*****/    
+202     {
+203         if(firdirection!=secdirection)    conversion(&amp;((*T)-&gt;child[firdirection]),secdirection);
+204         (*T)-&gt;color=RED;    (*T)-&gt;child[firdirection]-&gt;color=BACK;
+205         conversion(T,firdirection);
+206         return 0;
+207     }
+208 }
+209 
+210 int _InsertRBT(RBT *T,Elemtype e)
+211 {
+212     int info=0;
+213     if(NULL==(*T))                    /*****①插入到根节点*****/        //这里只是包含这种情况
+214     {
+215         *T=create_one_node(e);
+216         (*T)-&gt;color=RED;
+217         info=1;
+218     }
+219     else if(e&gt;((*T)-&gt;e))
+220     {
+221         info=_InsertRBT(&amp;(*T)-&gt;child[1],e);
+222         if(info&lt;1)    return info;
+223         else if(info==1)            /*****②父节点为黑******/
+224         {
+225             if(BACK==((*T)-&gt;color))    info--;
+226             else    info++;
+227         }
+228         else
+229         {
+230             info=keep_balance_for_insert(T,1,e);
+231         }
+232         
+233     }
+234     else if(e&lt;((*T)-&gt;e))
+235     {
+236         info=_InsertRBT(&amp;((*T)-&gt;child[0]),e);
+237         if(info&lt;1)    return info;
+238         else if(info==1)    
+239         {
+240             if(BACK==((*T)-&gt;color))    info--;
+241             else    info++;
+242         }
+243         else
+244         {
+245             info=keep_balance_for_insert(T,0,e);
+246         }
+247         
+248     }
+249     else    return info=-1;
+250     
+251     return info;
+252 }
+253 
+254 int InsertRBT(RBT *T,Elemtype e)    //插入节点函数返回值： -1-&gt;改点已存在  0-&gt;成功插入
+255 {
+256     int info=0;        //    info:  -1-&gt;已存在 0-&gt;结束 1-&gt;回溯到父节点 2-&gt;回溯到祖节点
+257     
+258 //2011年11月30日9:13:47 昨天晚上最后又想来这里这个if可以不要即可，也就是把它也放到_InsertRBT
+259 //内处理，在InsertRBT中有个判断即可!即改成下边的写法!
+260 //    if(NULL==(*T))                    /*****①插入到根节点*****/
+261 //    {
+262 //        *T=create_one_node(e);
+263 //        (*T)-&gt;color=BACK;
+264 //    }
+265 //    else            
+266 //    {
+267 //        info=_InsertRBT(T,e);    //    经过再三思考，这里info的返回值只可能为：-1  0  1
+268 //        if(info&gt;0)    (*T)-&gt;color=BACK,info=0;    //    查看根节点是否为红
+269 //    }
+270 
+271     info=_InsertRBT(T,e);
+272     if(info==1)    (*T)-&gt;color=BACK,info=0;    
+273     //    为了防止根结点变为红，它其实是处理了两种情况的后遗症
+274 //    分别是：③情况回溯上来，根节点变红  ①情况插入点即为根节点，为红
+275 //    这里没有直接把根结点变黑，主要是为了与_InsertRBT保持一致的写法，其实都行!
+276     return info;
+277 }
+278 //★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+279 
+280 
+281 //******************JUST FOR TEST********************//
+282 RBT queue[1000];
+283 void print(RBT cur)
+284 {
+285     int front=0,rear=0;
+286     int count=1,temp=0;
+287 
+288     if(NULL==cur)    
+289     {
+290         printf(&quot;NULL\n&quot;);
+291         return ;
+292     }
+293 
+294     queue[rear]=cur;
+295     while(front&lt;=rear)
+296     {
+297         cur=queue[front++];    count--;
+298         if(NULL!=cur-&gt;child[0])    queue[++rear]=cur-&gt;child[0],temp++;
+299         if(NULL!=cur-&gt;child[1])    queue[++rear]=cur-&gt;child[1],temp++;
+300 
+301         printf(&quot;%d color-&gt;&quot;,cur-&gt;e);
+302         if(BACK==cur-&gt;color)    printf(&quot;BACK |&quot;);
+303         else    printf(&quot;RED  |&quot;);
+304         
+305         if(0==count)
+306         {
+307             count=temp;
+308             temp=0;
+309             printf(&quot;\n&quot;);
+310         }
+311     }
+312 }
+313 //*****************************************************//
+314 
+315 //*****************DEAR MAIN***************************//
+316 int main()
+317 {
+318     RBT T=NULL;
+319     int i,nodenum=100;
+320     
+321     print(T);
+322     printf(&quot;\n&quot;);
+323 
+324     printf(&quot;\n插入操作\n&quot;);
+325     for(i=0;i&lt;nodenum;i++)
+326     {
+327         InsertRBT(&amp;T,i);
+328         printf(&quot;插入%d\n&quot;,i);
+329         print(T);
+330         printf(&quot;\n&quot;);
+331     }
+332 
+333 //    print(T);
+334     printf(&quot;\n删除操作:\n&quot;);
+335 
+336     for(i=0;i&lt;nodenum;i++)
+337     {
+338         DeleteRBT(&amp;T,i);
+339         printf(&quot;删除%d\n&quot;,i);
+340         print(T);
+341         printf(&quot;\n&quot;);
+342     }
+343 
+344     return 0;
+345 }
+
+</code></pre>
+<h4 id="优化方案"><mark>优化方案</mark></h4>
+<p>插入</p>
+<blockquote>
+<p><strong>在自顶向下寻找插入位置时，将下一个被检查的结点调整为如下两种情况之一</strong></p>
+<p>当前节点为黑色</p>
+<p>当前节点是红色，而他的兄弟是黑色</p>
+<p><strong>最终插入时可以不需要调整或只做一次旋转</strong></p>
+</blockquote>
+<p>避免了插入的情形3</p>
+<p>删除</p>
+<blockquote>
+<p>**在自根向下的搜索过程中，**<strong>将当前正在检查的结点调整成红色，最后找到被删结点后可以直接删除</strong></p>
+<p>见数据结构第三部分PPT92面</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>情况一</strong></p>
+<p>结点X至少有一个红色儿子</p>
+<p>直接下降一层</p>
+<p>如果新的x是红色，调整结束，继续往下调整</p>
+<p>新的x是黑色，执行旋转，让包含新x的路径增长</p>
+</li>
+<li>
+<p><strong>情况二</strong></p>
+<p><strong>结点</strong>X<strong>有二个黑色儿子</strong>，根据兄弟<strong>s</strong>的孩子进行调整</p>
+<ol>
+<li>
+<p><strong>S</strong>没<strong>有</strong>红孩子</p>
+<p><strong>重新着色，<strong>P</strong>变黑色，<strong>x</strong>和</strong>s变红色</p>
+</li>
+<li>
+<p><strong>S</strong>至少有一个红孩子</p>
+</li>
+</ol>
+<p><strong>说明</strong>s<strong>为根的子树比</strong>x<strong>为根的子树高：降低</strong>s<strong>的高度，增加</strong>x<strong>的高度，使</strong>x<strong>的红节点数增加</strong></p>
+<p><strong>解决方法：旋转</strong></p>
+</li>
+</ul>
+<h3 id="aa树">AA树</h3>
+<p>定义：</p>
+<blockquote>
+<p><strong>左孩子不能为红色的红黑树</strong></p>
+</blockquote>
+<p>优点：</p>
+<blockquote>
+<p>省去了一半的需要重构的情况</p>
+</blockquote>
+<p><strong>水平链表示法</strong></p>
+<blockquote>
+<p>将指向红结点的链画成水平的，可以看出所有叶子的高度都是相同的</p>
+</blockquote>
+<p><strong>水平链特征</strong></p>
+<blockquote>
+<p>水平链是右儿子链，不可能有左水平链</p>
+<p>不可能有两条连续的水平链</p>
+<p>如果一个结点没有右水平链的话，它的两个儿子就在同一层</p>
+</blockquote>
+<ul>
+<li>
+<p>插入</p>
+<ul>
+<li>
+<p>出现了水平左链</p>
+<p><strong>对结点执行一个</strong> <strong>LL</strong> <strong>旋转</strong></p>
+<p>即箭头转为右向</p>
+<p>但是</p>
+<p>水平左链变成了水平右链</p>
+<p>可能出现连续的水平右链，需要继续调整</p>
+</li>
+<li>
+<p>出现了连续水平右链</p>
+<p><strong>对结点执行一个</strong> <strong>RR</strong> <strong>旋转</strong></p>
+<p>但是</p>
+<p>R的层次增长了1，可能需要继续调整</p>
+<p>如果X是父亲的左孩子，出现水平左链</p>
+<p>如果x的父亲是祖父的红孩子，则出现了连续的水平右链</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>牺牲时间性能，换取实现的简单</strong></p>
+<blockquote>
+<p><strong>把检查是否需要旋转加入旋转函数，</strong> <strong>AA</strong> <strong>树的插入只比二叉查找树的插入多一次</strong> <strong>LL</strong> <strong>和</strong> <strong>RR</strong> <strong>旋转</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>删除</p>
+<ol>
+<li>
+<p>被删结点是黑色的右孩子—最简单的情况</p>
+<p>删除后对父结点执行LL</p>
+<p>继续向上调整</p>
+</li>
+<li>
+<p>被删结点是黑色的右孩子—最复杂的情况</p>
+<p>删除后对父结点执行LL</p>
+<p>对根的右孩子执行LL</p>
+<p>对根执行RR</p>
+<p>不需要继续向上调整</p>
+</li>
+<li>
+<p>被删结点是黑色的左孩子—最简单情况</p>
+<p><strong>不需要执行任何旋转</strong></p>
+<p><strong>继续检查父结点</strong></p>
+</li>
+<li>
+<p>被删结点是黑色的左孩子—稍复杂的情况</p>
+<p><strong>删除后需要对根执行</strong> <strong>RR</strong> <strong>旋转</strong></p>
+</li>
+<li>
+<p>被删结点是黑色的左孩子—最复杂的情况</p>
+<p><strong>删除后</strong></p>
+<p><strong>对根的右儿子执行</strong> <strong>LL</strong> <strong>旋转</strong></p>
+<p><strong>对根的右儿子的右儿子执行</strong> <strong>LL</strong> <strong>旋转</strong></p>
+<p><strong>对根执行</strong> <strong>RR</strong> <strong>旋转</strong></p>
+<p><strong>对根的右儿子执行</strong> <strong>RR</strong> <strong>旋转</strong></p>
+</li>
+</ol>
+</li>
+<li>
+<p>删除黑色右孩子总结</p>
+<p><strong>修改父节点层次</strong></p>
+<p><strong>重新平衡以父结点为根的子树</strong></p>
+<p>对父结点执行一次LL旋转</p>
+<p>如果旋转后根结点的右孩子有左孩子</p>
+<p>根结点的右孩子执行LL旋转</p>
+<p>​     根结点执行RR旋转</p>
+</li>
+<li>
+<p>删除黑色做孩子总结</p>
+<ul>
+<li>
+<p><strong>右孩子是黑孩子</strong></p>
+<ul>
+<li><strong>右孩子没有孩子，不需要执行任何旋转</strong></li>
+<li><strong>右孩子有一个红孩子，删除后需要对根执行<strong><strong>RR</strong></strong>旋转</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>右孩子是红孩子，右孩子必定有两个黑孩子，黑孩子还可以有一个红孩子</strong></p>
+<ul>
+<li>
+<p><strong>对根的右儿子执行</strong> <strong>LL</strong> <strong>旋转</strong></p>
+<p><strong>对根的右儿子的右儿子执行</strong> <strong>LL</strong> <strong>旋转</strong></p>
+<p><strong>对根执行</strong> <strong>RR</strong> <strong>旋转</strong></p>
+<p><strong>对根的右儿子执行</strong> <strong>RR</strong> <strong>旋转</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>如果根结点的右孩子有左儿子，对根结点的右儿子执行LL旋转</p>
+<p>如果根结点的右儿子的右儿子有左儿子，对根结点的右儿子的右儿子执行一次LL旋转</p>
+<p>如果根结点有连续水平右链，对根结点执行RR旋转。</p>
+<p>如果根结点的右儿子有连续水平右链，对根结点的右儿子执行RR旋转</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>将检查是否需要旋转放在旋转函数中</strong></p>
+<ul>
+<li>
+<p><strong>删除右孩子</strong></p>
+<p>•根结点执行一次LL旋转</p>
+<p>•如果需要的话，对根的右孩子执行一次LL旋转</p>
+<p>•如果根有连续水平右链，对根执行一次RR旋转。</p>
+</li>
+<li>
+<p><strong>删除左孩子</strong></p>
+<p>•对根结点的右儿子执行LL旋转</p>
+<p>•如果需要的话，对根结点的右儿子的右儿子执行一次LL旋转</p>
+<p>•如果根有连续水平右链，对根结点执行RR旋转。</p>
+<p>•如果根结点的右儿子，对根结点的右儿子执行RR旋转</p>
+</li>
+<li>
+<p><strong>综合两种情况</strong></p>
+<p>•如果需要的话，对根结点执行LL旋转</p>
+<p>•如果需要的话，对根结点的右儿子执行LL旋转</p>
+<p>•如果需要的话，对根结点的右儿子的右儿子执行LL旋转</p>
+<p>•如果需要的话，对根结点执行RR旋转</p>
+<p>•如果需要的话，对根结点的右儿子执行RR旋转</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="伸展树">伸展树</h2>
+<p>平衡树的缺陷</p>
+<ul>
+<li>
+<p>每个结点需要存储额外的平衡信息</p>
+<p>实现起来太复杂，插入和删除代价很大，容易出错</p>
+<p>没有利用90-10规则 ：百分之九十的访问都是针对百分之十的数据</p>
+</li>
+</ul>
+<blockquote>
+<p>伸展树：<strong>牺牲单个操作的对数性能。保证</strong> <strong>90%</strong> <strong>高效率</strong></p>
+<p>​      <strong>实现均摊意义上的高效</strong></p>
+</blockquote>
+<p>伸展策略：zig-zig , zig-zag , zig</p>
+<h2 id="哈希表">哈希表</h2>
+<ul>
+<li>
+<p>以结点的关键字值为参数，函数值是元素的存储位置</p>
+</li>
+<li>
+<p><strong>哈希函数的选择标准</strong></p>
+<p>计算速度快</p>
+<p>散列地址尽可能均匀，使得冲突机会尽可能的少</p>
+</li>
+<li>
+<p><strong>常用的哈希函数</strong></p>
+<p>直接地址法 <strong>H(key) = key</strong> <strong>或</strong> <strong>H(key) =</strong> <strong>a×key</strong> <strong>＋</strong> <strong>b</strong></p>
+<p>除留取余法 <strong>H(key)= key MOD p</strong> <strong>，</strong> <strong>p</strong> <strong>是数组的大小</strong></p>
+<p>数字分析法  对关键字集合中的所有关键字，分析每一位上数字分布。取数字分布均匀的位作为地址的组成部分</p>
+<p>平方取中法  适用于关键字中各位的分布都比较均匀，但关键字的值域比数组规模大</p>
+<p>​					 将关键字平方后，取其结果的中间各位作为散列函数值</p>
+<p>​					 由于中间各位和每一位数字都有关系，因此均匀分布的可能性较大</p>
+<p>折叠法		  如果关键字相当长，以至于和散列表的单元总数相比大得多时，可采用此法。</p>
+<p>​					 具体实现：是选取一个长度后，将关键字按此长度分组相加。</p>
+</li>
+<li>
+<p>冲突问题</p>
+<p>一般的哈希函数都是多对一。当两个以上的关键字映射到一个存储单元时，称为冲突或碰撞。</p>
+</li>
+<li>
+<p><strong>冲突解决的方法</strong></p>
+<ul>
+<li>
+<p><strong>闭散列表</strong></p>
+<p>利用本散列表中的空余单元</p>
+<ul>
+<li>
+<p>线性探测法   当散列 发生冲突时，探测下一个单元，直到发现一个空单元</p>
+<p>查找时用暴力思想线性查找，删除采用迟删除，找到打标记</p>
+<p>二次探测法    当发生冲突时，下一个探测的单元是 k + 1 , k + 4 , k + 9  …… 减少了碰撞次数</p>
+<p>再次散列法	双哈希</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>开散列表</strong></p>
+<p>将碰撞的结点组成一个线性表</p>
+<p>碰撞元素个数变化很大，所以用链表存储</p>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[B树和B+树]]></title>
         <id>https://AegeanYan.github.io/post/b-shu-he-bshu/</id>
