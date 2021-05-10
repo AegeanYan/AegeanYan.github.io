@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>ST表和树状数组 | AegeanYan的小站</title>
+<meta name="description" content="欢迎来到酒馆">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://AegeanYan.github.io/favicon.ico?v=1620664078085">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://AegeanYan.github.io/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://AegeanYan.github.io">
+        <img class="avatar" src="https://AegeanYan.github.io/images/avatar.png?v=1620664078085" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://AegeanYan.github.io">
+        <h1 class="site-title">AegeanYan的小站</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+            <div class="feature-container" style="background-image: url('https://AegeanYan.github.io/post-images/st-biao-he-shu-zhuang-shu-zu.jpeg')">
+            </div>
+          
+          <h2 class="post-title">ST表和树状数组</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-05-11</span>
+            
+          </div>
+          <div class="post-content">
+            <h2 id="st表sparse-table稀疏表">ST表（Sparse Table）（稀疏表）</h2>
+<blockquote>
+<p>1.基础： （1）<strong>ST表</strong>（Sparse Table，<strong>稀疏表</strong>）是一种简单的数据结构，主要用来解决<strong>RMQ</strong>（Range Maximum/Minimum Query，<strong>区间最大/最小值查询</strong>）问题。它主要应用<strong>倍增</strong>的思想，可以实现 <img src="https://www.zhihu.com/equation?tex=O%28n%5Clog+n%29" alt="[公式]" loading="lazy"> 预处理、 <img src="https://www.zhihu.com/equation?tex=O%281%29" alt="[公式]" loading="lazy"> 查询。<br>
+（2）RMQ 表示区间最大（最小）值。<br>
+<strong>（3）可重复贡献问题</strong>是指对于运算，满足，则对应的区间询问就是一个可重复贡献问题。例如，最大值有，gcd 有，所以 RMQ 和区间 GCD 就是一个可重复贡献问题。像区间和就不具有这个性质。 即对f（a，a）=a；</p>
+</blockquote>
+<p>主要思想：</p>
+<pre><code class="language-c++">st[i][j] = min(st[i][j - 1],st[i + 2^(j - 1))][j - 1])
+</code></pre>
+<h4 id="预处理函数">预处理函数</h4>
+<pre><code class="language-c++">//预处理函数
+int a[1010];//原始输入数组
+int st[1010][20];//st表
+//这个地方有点问题，需要同时完成a[i]和Max[i][0]的赋值
+for(int i=1;i&lt;=N;i++) Max[i][0]=read();
+void init(int n)
+{
+ 		//st表的初始化
+    //即将st[i][0]赋值
+    for (int i = 0; i &lt; n; i++)
+        st[i][0] = a[i];
+		//然后，由于j=0已完成赋值，从j = 1开始直到(1 &lt;&lt; j) &lt;= n
+    //i从0开始到i + (1 &lt;&lt; j) - 1 &lt; n 结束（最大的是n - 1 == i + (1 &lt;&lt; j) - 1）
+    //用基本思想完成dp过程
+    for (int j = 1; (1 &lt;&lt; j) &lt;= n; j++)
+    {
+        for (int i = 0; i + (1 &lt;&lt; j) - 1 &lt; n; i++)
+            st[i][j] = min(st[i][j - 1],st[i + (1 &lt;&lt; (j - 1))][j - 1]);
+    }
+}
+//ST表是利用的是倍增的思想
+
+//拿最大值来说
+
+//我们用𝑀𝑎𝑥[𝑖][𝑗]表示，从𝑖位置开始的2^𝑗个数中的最大值，例如𝑀𝑎𝑥[𝑖][1]表示的是𝑖位置和𝑖+1位置中两个数的最大值
+</code></pre>
+<h4 id="查询操作">查询操作：</h4>
+<p>构造𝑙𝑜𝑔2(区间长度)</p>
+<pre><code class="language-c++">int Query(int l,int r)
+{
+  //r - l + 1为这段区间的长度
+    int k=log2(r-l+1); 
+    return max(Max[l][k],Max[r-(1&lt;&lt;k)+1][k]);//把拆出来的区间分别取最值 
+}
+//为什么是r-(1&lt;&lt;k)+1？
+//因为x + (1 &lt;&lt; k) - 1 = r
+//使得两个st完全覆盖了l,r区间
+</code></pre>
+<h2 id="树状数组">树状数组</h2>
+<h4 id="优点和缺点">优点和缺点</h4>
+<ul>
+<li>
+<p>修改和查询的复杂度都是O(logN)，而且相比线段树系数要少很多，比传统数组要快，而且容易写。</p>
+<p>缺点是遇到复杂的区间问题还是不能解决，功能还是有限。</p>
+</li>
+</ul>
+<pre><code>C[i]=A[i-2^k+1]+A[i-2^k+2]+......A[i]; （k为i的二进制中从最低位到高位连续零的长度）例如i=8时，k=3;
+</code></pre>
+<p>lowbit函数：k为二进制方法求得x的最低位1（转为10进制）</p>
+<blockquote>
+<p><strong>lowbit(x)=2^k</strong></p>
+</blockquote>
+<pre><code class="language-c++">int lowbit(int t)
+{
+return t&amp;(-t);
+}
+//-t 代表t的负数 计算机中负数使用对应的正数的补码来表示
+//例如 :
+// t=6（0110） 此时 k=1
+//-t=-6=(1001+1)=(1010)
+// t&amp;(-t)=(0010)=2=2^1
+</code></pre>
+<p>单点更新：</p>
+<pre><code class="language-c++">void add(int x,int y)
+{
+for(int i=x;i&lt;=n;i+=lowbit(i))
+tree[i]+=y;
+}
+//每次加上一个i的最低位1（转为10进制）
+</code></pre>
+<p>前缀和查询</p>
+<pre><code class="language-c++">int getsum(int x)
+{
+int ans=0;
+for(int i=x;i&gt;0;i-=lowbit(i))
+ans+=C[i];
+return ans；
+}
+//每次减去一个最低位1（转为10进制）
+</code></pre>
+<ul>
+<li>单点更新 单点查询：基础树状数组+前缀和之差</li>
+<li>单点更新 区间查询：基础树状数组+前缀和之差</li>
+<li>区间更新 单点查询（此处单点的意思是查单个点变化后的值）</li>
+</ul>
+<pre><code class="language-c++">15 int getsum(int i){        //求D[1 - i]的和，即A[i]值
+16     int res = 0;
+17     while(i &gt; 0){
+18         res += c[i];
+19         i -= lowbit(i);
+20     }
+21     return res;
+22 }
+//此处getsum为查询单点
+//维护的是数组差的树状数组
+23 int main(){
+25     cin&gt;&gt;n; for(int i = 1; i &lt;= n; i++){
+28         cin&gt;&gt;a[i];
+29         updata(i,a[i] - a[i-1]);   //输入初值的时候，也相当于更新了值
+31     }
+32     
+33     //[x,y]区间内加上k
+34     updata(x,k);    //A[x] - A[x-1]增加k
+35     updata(y+1,-k);        //A[y+1] - A[y]减少k
+36     
+37     //查询i位置的值
+38     int sum = getsum(i);
+39
+40     return 0;
+41 }
+</code></pre>
+<ul>
+<li>区间更新 区间查询</li>
+</ul>
+<blockquote>
+<p>维护两个树状数组</p>
+</blockquote>
+<pre><code>sum1[i] = D[i]，sum2[i] = D[i]*(i-1);
+</code></pre>
+<pre><code class="language-c++">void updata(int i,int k){
+11     int x = i;    //因为x不变，所以得先保存i值
+12     while(i &lt;= n){
+13         sum1[i] += k;
+14         sum2[i] += k * (x-1);
+15         i += lowbit(i);
+16     }
+17 }
+void range_add(ll l, ll r, ll x){
+    add(l, x), add(r + 1, -x);
+}//add与updata等价
+19 int getsum(int i){        //求前缀和
+20     int res = 0, x = i;
+21     while(i &gt; 0){
+22         res += x * sum1[i] - sum2[i];//x为总点数
+23         i -= lowbit(i);
+24     }
+25     return res;
+26 }
+//x至y
+40     int sum = getsum(y) - getsum(x-1);
+//其他与第三种相同
+</code></pre>
+<p><a href="https://www.cnblogs.com/RabbitHu/p/BIT.html" title="cnblogs">树状数组</a></p>
+<p><a href="https://www.cnblogs.com/xenny/p/9739600.html" title="cnblogs">树状数组</a></p>
+<figure data-type="image" tabindex="1"><img src="https://AegeanYan.github.io/post-images/1620664034755.jpeg" alt="" loading="lazy"></figure>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://AegeanYan.github.io/post/shu-yu-ji-he/">
+              <h3 class="post-title">
+                下一篇：树与集合
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">欢迎来到酒馆</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/AegeanYan" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://AegeanYan.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
