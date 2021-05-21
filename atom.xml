@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://AegeanYan.github.io</id>
     <title>AegeanYan的小站</title>
-    <updated>2021-05-10T16:56:12.277Z</updated>
+    <updated>2021-05-21T07:15:19.828Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://AegeanYan.github.io"/>
     <link rel="self" href="https://AegeanYan.github.io/atom.xml"/>
@@ -10,6 +10,44 @@
     <logo>https://AegeanYan.github.io/images/avatar.png</logo>
     <icon>https://AegeanYan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, AegeanYan的小站</rights>
+    <entry>
+        <title type="html"><![CDATA[热力学第二定律]]></title>
+        <id>https://AegeanYan.github.io/post/re-li-xue-di-er-ding-lu/</id>
+        <link href="https://AegeanYan.github.io/post/re-li-xue-di-er-ding-lu/">
+        </link>
+        <updated>2021-05-21T07:14:34.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="热力学第二定律">热力学第二定律</h1>
+<h3 id="不可逆过程">不可逆过程</h3>
+<blockquote>
+<p>不是可逆过程的过程称不可逆过程</p>
+<p>体系和环境可完全恢复到初态，且无需消耗能量的过程称可逆过程</p>
+</blockquote>
+<h3 id="卡诺定律">卡诺定律</h3>
+<blockquote>
+<p>在热源T_h和T_c间工作的所有可逆热机具有相同的效率</p>
+<p>在相同温度下工作的不可逆热机的效率比这低</p>
+</blockquote>
+<h3 id="热力学第二定律-2">热力学第二定律</h3>
+<ul>
+<li>
+<p>克劳修斯表述：</p>
+<p>热可以自发从高温物体流向低温物体，但不能相反</p>
+</li>
+<li>
+<p>开尔文表述：</p>
+<p>任何设备都无法将热完全变为功且无其他影响</p>
+<p>不可能从单一热源取热使之完全转换为有用的<a href="https://baike.baidu.com/item/%E5%8A%9F/53648">功</a>而不产生其他影响。</p>
+</li>
+</ul>
+<h4 id="制冷机">制冷机</h4>
+<ul>
+<li>
+<p>制冷机就是将热机反转</p>
+<p>用性能系数(COP)来描述输入每单位功可以去除的热量</p>
+</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[ST表和树状数组]]></title>
         <id>https://AegeanYan.github.io/post/st-biao-he-shu-zhuang-shu-zu/</id>
