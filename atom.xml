@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://AegeanYan.github.io</id>
+    <title>Gridea</title>
+    <updated>2024-04-05T09:23:35.725Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://AegeanYan.github.io"/>
+    <link rel="self" href="https://AegeanYan.github.io/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>https://AegeanYan.github.io/images/avatar.png</logo>
+    <icon>https://AegeanYan.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2024, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[IDA pro debugger初试避坑指南]]></title>
+        <id>https://AegeanYan.github.io/post/ida-pro-debugger-chu-shi-bi-keng-zhi-nan/</id>
+        <link href="https://AegeanYan.github.io/post/ida-pro-debugger-chu-shi-bi-keng-zhi-nan/">
+        </link>
+        <updated>2024-04-05T09:00:57.000Z</updated>
+        <content type="html"><![CDATA[<p>萌新想要调试自己手上的一个简单项目，但在使用自己的IDA pro 7.0 cracked 版本 按教程启动debugger时出现了 <code>Invalid service</code> 的问题，最初我以为是自己的IDA pro版本过低的问题。从Hex-rays<a href="https://hex-rays.com//wp-content/uploads/2020/06/ios_debugger_primer2.pdf">官方教程</a>中发现自己的 <code>Device</code>栏没有自动识别。于是去PYG找到了8.3版本的window版IDA pro并用crossover与自己的intel mac打通debugger成功。发现网络上的教程或太老或不全，考虑到自己的探索可能是互联网上头一份，故记录一下。</p>
+<p>首先已经验证的是报错<code>Error launching iOS debugserver: The service is invalid. (errcode = 0xe8000022)</code>和IDA pro版本没有直接关系，和win/mac的IDA pro版本存在一定关系。在IDA pro任务栏 debugger-&gt;Debugger options-&gt;Set specific options中可以选择<code>Lauch debugserver automatically</code>项，推测这是IDA利用Xcode做的自动识别与启动iDevice上的debugserver（windows版本是没有这项的）。然而这里存在两个问题：Hex-rays官方教程里使用的是未越狱版本的iDevice，且iOS_deploy.zip这个工具已难找到绿色资源（痛失一块大洋从旮旯里买了一份）。未越狱版本的debugserver有两个问题：</p>
+<ul>
+<li>Xcode自动安装的debugserver为只读，在越狱版中可以重签名放回（已尝试<a href="https://book.crifan.org/books/ios_re_debug_debugserver_lldb/website/debugserver_lldb_debug/proper_entitlemets.html">debugserver codesign</a>），（这里面我遇到个坑，为后人避雷了：Xcode自动安装debugserver时虽然我的Xcode版本足够新，有DeviceSupport/&lt;version&gt;/DeveloperDiskImage.dmg 资源，但Xcode于任务栏Windows-&gt;Devices and Simulators首次连接设备时报错Failed to prepare the device for development，且debugserver未安装成功，而我自己的未越狱手机连接正常，<a href="https://stackoverflow.com/q/64974291">stackoverflow</a>上提到一嘴JB的问题给了我思路，我的解决方法是重启非完美越狱的设备回到Jailed状态即可正常连接Xcode，后续即使再次越狱也能正常连接了，虽然JB版本的debugserver完全没必要从这里安装，但不知道Xcode这里的报错会不会带来后续影响）</li>
+<li>在我的越狱版本中可以直接在Cydia中下载安装debugserver-10来完美替代。功能应该没有区别，并且无论哪种debugserver，最后我在使用<code>Lauch debugserver automatically</code> 都失败了，但手动启动却都能成功debug。</li>
+</ul>
+<p>总而言之这个错误的来源是mac版的IDA pro上才有的<code>Lauch debugserver automatically</code>项，将其关闭后手动配置host:port，并手动启动任何一种debugserver即能正常运行。</p>
+<p>其次分享一下自己利用Crossover打通win版IDA pro debugger的经验。由于自己最早的怀疑是IDA pro版本问题，从P.Y.G搞到了几乎是最新版的IDA pro 8.3，但是好像只有win版，受社区启发利用Crossover试试。Crossover资源自行寻找。Crossover实际做了一个简化版本的win虚拟机，简单讲一下安装上的一点问题，参考<a href="https://bbs.kanxue.com/thread-278679.htm">飘雪</a>。我们保持Python版本和P.Y.G的安装包一致，不下载embeded版本（因为需要Script/pip来进行包管理和下载），而是利用运行命令<code>cmd</code>来用exe安装Python，设置中将路径放到了IDA pro文件夹里。这里说几个需要注意的地方：</p>
+<ul>
+<li>安装目录随意，出错点跳过这一步就行</li>
+<li>运行命令<code>regedit</code>打开注册表，（猜测这个和Win+R效果一样的）填写环境变量HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment中的PATH项，同时放入python文件夹路径和&lt;python&gt;/Script路径，来保证python和pip都对整体环境可见</li>
+<li>在注册表中继续填写HKEY_USERS\S-1-5-21-0-0-0-1000\Software\Hex-Rays\IDA\Python3TargetDLL，若未见Python3TargetDLL项则新增 字符串值 , 名字是 Python3TargetDLL, 值是 ida目录下 python3.dll 的目录</li>
+<li>注意我们在实际在操作win虚拟机，各种路径需要从win的角度来看（分盘、反斜杠）</li>
+<li>运行命令<code>cmd</code>,安装python到自定义路径，按照说明升级pip、安装keystone-engine和six</li>
+<li>在debugger中填写各种必要项，注意反斜杠和分盘（ios设备路径用正斜杠），填写host:port并手动启动debugserver即可成功。</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello Gridea]]></title>
+        <id>https://AegeanYan.github.io/post/hello-gridea/</id>
+        <link href="https://AegeanYan.github.io/post/hello-gridea/">
+        </link>
+        <updated>2018-12-11T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+<!-- more -->
+<p><a href="https://github.com/getgridea/gridea">Github</a><br>
+<a href="https://gridea.dev/">Gridea 主页</a><br>
+<a href="https://fehey.com/">示例网站</a></p>
+<h2 id="特性">特性👇</h2>
+<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
+<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
+<p>🏷️  你可以对文章进行标签分组</p>
+<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
+<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
+<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
+<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
+<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
+<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
+<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
+<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
+<p>未来，它一定会成为你离不开的伙伴</p>
+<p>尽情发挥你的才华吧！</p>
+<p>😘 Enjoy~</p>
+]]></content>
+    </entry>
+</feed>
